@@ -10,20 +10,27 @@ import {
 } from "./constants/colours/colours";
 
 const theme = {
-  colour: COLOURS,
-  primary: PRIMARY,
-  accent: ACCENT,
   light: {
+    GRAY: GRAY,
+    COLOURS: COLOURS,
+    PRIMARY: PRIMARY,
+    ACCENT: ACCENT,
     BG: BG_LIGHT,
     BG2: BG_SECONDARY_LIGHT,
     TEXT: GRAY[900],
     PLACEHOLDER: GRAY[500],
+    DIVIDER: GRAY[400],
   },
   dark: {
+    GRAY: GRAY,
+    colour: COLOURS,
+    PRIMARY: PRIMARY,
+    ACCENT: ACCENT,
     BG: BG_DARK,
     BG2: BG_SECONDARY_DARK,
     TEXT: GRAY[100],
     PLACEHOLDER: GRAY[500],
+    DIVIDER: GRAY[700],
   },
 };
 
