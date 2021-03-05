@@ -3,9 +3,9 @@ import { ThemeProvider } from "styled-components";
 
 // Components
 import { Navbar } from "./components/layout/Navbar/Navbar";
-import { Hero } from "./components/Hero";
-import { MessMenuCard } from "./components/MessMenu";
-import { Container } from "./styles/Shared/Container";
+
+// Pages
+import Home from "./HomePage/Home";
 
 // theme handler with local storage
 import useLocalTheme from "./helper/themeHandler";
@@ -20,10 +20,8 @@ const App = () => {
         <GlobalStyle />
         <div className="App">
           <Navbar toggleTheme={setUserChoiceTheme} />
-          <Container>
-            <Hero />
-            <MessMenuCard />
-          </Container>
+          {/* Routes */}
+          <Home />
         </div>
       </>
     </ThemeProvider>
