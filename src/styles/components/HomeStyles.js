@@ -21,10 +21,11 @@ export const Divider = styled.div`
 `;
 
 export const Hero = styled.div`
+  padding-right: 1.5rem;
   width: 100%;
   .desktop {
     @media (max-width: 768px) {
-      display: none;
+      margin-top: 4rem;
     }
   }
   .mobile {
@@ -45,5 +46,43 @@ export const Hero = styled.div`
     @media (max-width: 768px) {
       display: block;
     }
+  }
+`;
+
+export const Card = styled.div`
+  padding: 1.5rem;
+  max-width: 200px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  /* margin-right: 2rem; */
+
+  .icon {
+    padding: 1rem;
+    width: fit-content;
+    color: white;
+    background-color: ${(props) => props.color};
+    box-shadow: 0px 0px 20px ${(props) => props.color}50;
+    border-radius: 8px;
+  }
+  .text {
+    text-align: center;
+  }
+
+  @media (max-width: 768px) {
+    padding: 1rem;
+  }
+`;
+
+export const CardStack = styled.div`
+  margin-top: 1.5rem;
+  display: grid;
+  align-items: baseline;
+  grid-template-columns: auto auto auto auto;
+
+  @media (max-width: 768px) {
+    grid-template-columns: auto auto;
   }
 `;

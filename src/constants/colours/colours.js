@@ -8,7 +8,8 @@ export const COLOURS = {
   GREEN2: "#27AE60",
   PURPLE1: "#BB6BD9",
   PURPLE2: "#9B51E0",
-  TEAL: "#56CCF2,",
+  TEAL: "#56CCF2",
+  ORANGE: "#FC9A44",
 };
 
 export const GRAY = {
