@@ -50,7 +50,6 @@ export const Type = styled.p`
 `;
 
 export const Caption = styled.p`
-  color: ${(props) => props.theme.PLACEHOLDER};
   font-size: 12px;
-  font-weight: 500;
+  font-weight: 600;
 `;
