@@ -11,8 +11,8 @@ import {
 
 const theme = {
   light: {
+    ...COLOURS,
     GRAY: GRAY,
-    COLOURS: COLOURS,
     PRIMARY: PRIMARY,
     ACCENT: ACCENT,
     BG: BG_LIGHT,
@@ -22,8 +22,8 @@ const theme = {
     DIVIDER: GRAY[400],
   },
   dark: {
+    ...COLOURS,
     GRAY: GRAY,
-    colour: COLOURS,
     PRIMARY: PRIMARY,
     ACCENT: ACCENT,
     BG: BG_DARK,
