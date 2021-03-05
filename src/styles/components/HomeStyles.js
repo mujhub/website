@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import theme from "../../theme";
 
 export const MessMenu = styled.div`
   background-color: ${(props) => props.theme.BG2};
@@ -25,7 +26,7 @@ export const Hero = styled.div`
   width: 100%;
   .desktop {
     @media (max-width: 768px) {
-      margin-top: 4rem;
+      margin-top: 6rem;
     }
   }
   .mobile {
@@ -84,5 +85,52 @@ export const CardStack = styled.div`
 
   @media (max-width: 768px) {
     grid-template-columns: auto auto;
+  }
+`;
+
+export const Subheading = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+`;
+
+export const FormStyles = styled.section`
+  div {
+    margin: 1rem 0;
+    display: flex;
+    flex-direction: column;
+    label {
+      margin-bottom: 1rem;
+      margin-right: 2rem;
+    }
+    input,
+    textarea {
+      padding: 1rem;
+      border: none;
+      border-radius: 4px;
+      -moz-placeholder {
+        font-family: "Inter", Arial, Helvetica, sans-serif;
+      }
+    }
+
+    textarea {
+      resize: vertical;
+      height: 20vh;
+      width: 40vw;
+      @media (max-width: 768px) {
+        width: 80vw;
+      }
+    }
+  }
+  .submitBtn {
+    padding: 1rem;
+    margin: 2rem 0;
+    width: 50%;
+    display: block;
+    @media (max-width: 768px) {
+      width: 100%;
+    }
   }
 `;

@@ -15,7 +15,12 @@ import { FeatureCard } from "../components/FeatureCards";
 
 import { Container as Flex } from "../styles/Shared/Container";
 import { Type, H4 } from "../styles/Shared/StyledTypes";
-import { CardStack } from "../styles/components/HomeStyles";
+import {
+  CardStack,
+  Subheading,
+  FormStyles,
+} from "../styles/components/HomeStyles";
+import { Button } from "../styles/Shared/Button";
 
 const Home = (props) => {
   const theme = useContext(ThemeContext);
@@ -58,26 +63,49 @@ const Home = (props) => {
 
       {/* features */}
       <Flex center column m="6rem 0">
-        <div
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            alignItems: "center",
-            textAlign: "center",
-          }}
-        >
+        <Subheading>
           <H4 style={{ margin: "0 0 0.5rem 0" }}>Services We Offer</H4>
           <Type>
             We will launch the MUJHUB Android and iOS apps shortly! You can
             access all the features in the app.
           </Type>
-        </div>
+        </Subheading>
         <CardStack>
           {features.map((feature) => (
             <FeatureCard feature={feature} />
           ))}
         </CardStack>
+      </Flex>
+
+      {/* contact form */}
+      <Flex column center>
+        <Subheading>
+          <H4 style={{ margin: "0 0 0.5rem 0" }}>Feedback</H4>
+          <Type>We strive to improve our product,</Type>
+        </Subheading>
+        <FormStyles>
+          <form action="/" method="post">
+            <div>
+              <label htmlFor="name">Full Name </label>
+              <input type="text" name="name" id="name" placeholder="Name" />
+            </div>
+            <div>
+              <label htmlFor="message">Message </label>
+              <textarea
+                rows="5"
+                cols="40"
+                wrap="hard"
+                type="text"
+                name="message"
+                id="message"
+                placeholder="Message"
+              />
+            </div>
+            <Button className="submitBtn" Primary>
+              SUBMIT
+            </Button>
+          </form>
+        </FormStyles>
       </Flex>
     </>
   );
