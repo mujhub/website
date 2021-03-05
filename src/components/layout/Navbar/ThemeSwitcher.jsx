@@ -11,9 +11,11 @@ const ThemeSwitch = ({ toggleTheme }) => {
   const onClick = () => {
     if (themeContext === theme.dark) {
       toggleTheme(theme.light);
+      localStorage.setItem("theme-mujhub", JSON.stringify(theme.light));
       setIcon(<BsMoon />);
     } else {
       toggleTheme(theme.dark);
+      localStorage.setItem("theme-mujhub", JSON.stringify(theme.dark));
       setIcon(<BsFillLightningFill />);
     }
   };

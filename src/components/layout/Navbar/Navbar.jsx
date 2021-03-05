@@ -1,5 +1,5 @@
 import { Nav, NavLinks } from "../../../styles/components/layout/NavbarStyles";
-import { H5 } from "../../../styles/Shared/StyledTypes";
+import { H6 } from "../../../styles/Shared/StyledTypes";
 import ThemeSwitch from "./ThemeSwitcher";
 
 export const Navbar = ({ toggleTheme }) => {
@@ -7,7 +7,7 @@ export const Navbar = ({ toggleTheme }) => {
     <Nav className="navbar">
       {/* logo */}
       <NavLinks logo>
-        <H5>MUJHUB</H5>
+        <H6>LOGO</H6>
       </NavLinks>
       <ThemeSwitch toggleTheme={toggleTheme} />
     </Nav>

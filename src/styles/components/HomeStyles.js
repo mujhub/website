@@ -21,6 +21,7 @@ export const Divider = styled.div`
 `;
 
 export const Hero = styled.div`
+  padding-right: 1.5rem;
   width: 100%;
   .desktop {
     @media (max-width: 768px) {
