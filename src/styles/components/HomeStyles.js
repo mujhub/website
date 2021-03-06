@@ -81,6 +81,10 @@ export const Subheading = styled.div`
   text-align: center;
   margin-bottom: 1rem;
 
+  h4 {
+    margin: 0 0 1rem 0;
+  }
+
   p {
     color: ${(props) => props.theme.PLACEHOLDER};
   }
