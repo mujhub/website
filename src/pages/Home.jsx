@@ -61,18 +61,19 @@ const Home = (props) => {
   return (
     <>
       {/* hero section */}
-      <Flex p="0 6rem" reverseOnMobile>
+      <Flex p="0 5rem" reverseOnMobile>
         <Hero />
         <MessMenuCard />
       </Flex>
 
       {/* features */}
-      <Flex center column m="6rem 0 4rem 0">
+      <Flex center column m="5rem 0 4rem 0">
         <Subheading>
-          <H4 style={{ margin: "0 0 0.5rem 0" }}>Services We Offer</H4>
+          <H4 style={{ margin: "0 0 1rem 0" }}>Services We Offer</H4>
           <Type>
-            We will launch the MUJHUB Android and iOS apps shortly! You can
-            access all the features in the app.
+            Our array of features will be accessible via the native applications
+            coming to <br />
+            Play Store and App Store very soon!
           </Type>
         </Subheading>
 
@@ -87,8 +88,13 @@ const Home = (props) => {
       {/* contact form */}
       <Flex column center>
         <Subheading>
-          <H4 style={{ margin: "0 0 0.5rem 0" }}>Feedback</H4>
-          <Type>We strive to improve our product,</Type>
+          <H4 style={{ margin: "0 0 1rem 0" }}>Feedback</H4>
+          <Type>
+            Our customers are our priority! We promise to hear you out and help
+            you in whatever way we can. <br />
+            Find something cool and wish it existed on MUJ HUB? Put it in the
+            form below!
+          </Type>
         </Subheading>
         <FormStyles>
           <form action="/" method="post">
