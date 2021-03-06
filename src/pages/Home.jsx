@@ -10,7 +10,6 @@ import { IoSchool, IoHeart } from "react-icons/io5";
 
 // components
 import { Hero } from "../components/Home/Hero";
-// import { MessMenuCard } from "../components/MessMenu";
 import { MessMenuCard } from "../components/Mess/MessMenu";
 import { FeatureCard } from "../components/Home/FeatureCards";
 
@@ -69,7 +68,7 @@ const Home = (props) => {
       {/* features */}
       <Flex center column m="5rem 0 4rem 0">
         <Subheading>
-          <H4 style={{ margin: "0 0 1rem 0" }}>Services We Offer</H4>
+          <H4>Services We Offer</H4>
           <Type>
             Our array of features will be accessible via the native applications
             coming to <br />
@@ -88,7 +87,7 @@ const Home = (props) => {
       {/* contact form */}
       <Flex column center>
         <Subheading>
-          <H4 style={{ margin: "0 0 1rem 0" }}>Feedback</H4>
+          <H4>Feedback</H4>
           <Type>
             Our customers are our priority! We promise to hear you out and help
             you in whatever way we can. <br />
@@ -96,6 +95,7 @@ const Home = (props) => {
             form below!
           </Type>
         </Subheading>
+
         <FormStyles>
           <form action="/" method="post">
             <div>
