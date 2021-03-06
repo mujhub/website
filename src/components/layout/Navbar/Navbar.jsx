@@ -7,7 +7,7 @@ export const Navbar = ({ toggleTheme }) => {
     <Nav className="navbar">
       {/* logo */}
       <NavLinks logo>
-        <H6>LOGO</H6>
+        <H6>[logo] MUJ HUB</H6>
       </NavLinks>
       <ThemeSwitch toggleTheme={toggleTheme} />
     </Nav>

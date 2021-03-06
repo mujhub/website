@@ -29,26 +29,30 @@ const Home = (props) => {
   // features
   const features = [
     {
-      heading: "DMS Integration",
-      desc: "Check your attendance.",
-      icon: <IoSchool size="24px" />,
-      color: theme.ORANGE,
-    },
-    {
       heading: "Mess Menu",
-      desc: "Checkout mess menu.",
+      desc:
+        "Hungry during class and can't wait to see what's on the menu for lunch? Head over to MUJ HUB!",
       icon: <IoRestaurant size="24px" />,
       color: theme.GREEN2,
     },
     {
+      heading: "DMS Integration",
+      desc: "Having a tough time managing attendance? We got you covered.",
+      icon: <IoSchool size="24px" />,
+      color: theme.ORANGE,
+    },
+
+    {
       heading: "Eateries",
-      desc: "Menu and order to various outlets.",
+      desc:
+        "Craving tasty food at night? View menus and order from any outlet through MUJ HUB.",
       icon: <IoFastFood size="24px" />,
       color: theme.PURPLE2,
     },
     {
       heading: "More Coming Soon..",
-      desc: "We are constantly adding new features to MUJHUB",
+      desc:
+        "Your one-stop solution to everything in MUJ is constantly working on new features.",
       icon: <IoHeart size="24px" />,
       color: theme.RED,
     },
@@ -57,7 +61,7 @@ const Home = (props) => {
   return (
     <>
       {/* hero section */}
-      <Flex p="0 5rem" reverseOnMobile>
+      <Flex p="0 6rem" reverseOnMobile>
         <Hero />
         <MessMenuCard />
       </Flex>

@@ -37,7 +37,7 @@ export const Hero = styled.div`
 
 export const Card = styled.div`
   padding: 1.5rem;
-  max-width: 200px;
+  max-width: 250px;
   border-radius: 8px;
   display: flex;
   align-items: center;
