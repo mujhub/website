@@ -1,21 +1,6 @@
 import styled from "styled-components";
 import theme from "../../theme";
 
-export const MessMenu = styled.div`
-  background-color: ${(props) => props.theme.BG2};
-  box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  height: fit-content;
-  border-radius: 8px;
-  padding: 1.5rem;
-  margin: 1rem;
-
-  @media (max-width: 768px) {
-    margin: 0;
-    width: auto;
-  }
-`;
-
 export const Divider = styled.div`
   height: 1px;
   background-color: ${(props) => props.theme.DIVIDER};
@@ -94,6 +79,10 @@ export const Subheading = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
+
+  p {
+    color: ${(props) => props.theme.PLACEHOLDER};
+  }
 `;
 
 export const FormStyles = styled.section`
@@ -107,11 +96,18 @@ export const FormStyles = styled.section`
     }
     input,
     textarea {
+      color: ${(props) => props.theme.TEXT};
       padding: 1rem;
+      background-color: ${(props) => props.theme.FIELD};
       border: none;
       border-radius: 4px;
-      -moz-placeholder {
-        font-family: "Inter", Arial, Helvetica, sans-serif;
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+        "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+        "Helvetica Neue", sans-serif;
+      ::placeholder {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+          "Helvetica Neue", sans-serif;
       }
     }
 
@@ -119,6 +115,7 @@ export const FormStyles = styled.section`
       resize: vertical;
       height: 20vh;
       width: 40vw;
+
       @media (max-width: 768px) {
         width: 80vw;
       }
@@ -127,7 +124,7 @@ export const FormStyles = styled.section`
   .submitBtn {
     padding: 1rem;
     margin: 2rem 0;
-    width: 50%;
+    width: 100%;
     display: block;
     @media (max-width: 768px) {
       width: 100%;
