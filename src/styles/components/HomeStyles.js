@@ -79,6 +79,7 @@ export const Subheading = styled.div`
   justify-content: center;
   align-items: center;
   text-align: center;
+  margin-bottom: 1rem;
 
   p {
     color: ${(props) => props.theme.PLACEHOLDER};
@@ -87,15 +88,17 @@ export const Subheading = styled.div`
 
 export const FormStyles = styled.section`
   div {
-    margin: 1rem 0;
     display: flex;
     flex-direction: column;
     label {
+      margin-top: 1rem;
       margin-bottom: 1rem;
       margin-right: 2rem;
     }
     input,
-    textarea {
+    textarea,
+    option,
+    select {
       color: ${(props) => props.theme.TEXT};
       padding: 1rem;
       background-color: ${(props) => props.theme.FIELD};
@@ -123,11 +126,20 @@ export const FormStyles = styled.section`
   }
   .submitBtn {
     padding: 1rem;
-    margin: 2rem 0;
+    margin: 1.5rem 0;
     width: 100%;
     display: block;
     @media (max-width: 768px) {
       width: 100%;
     }
+  }
+
+  option,
+  select {
+    padding: 1rem;
+  }
+
+  .checkbox {
+    margin-right: 0.5rem;
   }
 `;
