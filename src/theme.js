@@ -18,8 +18,9 @@ const theme = {
     BG: BG_LIGHT,
     BG2: BG_SECONDARY_LIGHT,
     TEXT: GRAY[900],
-    PLACEHOLDER: GRAY[500],
+    PLACEHOLDER: GRAY[600],
     DIVIDER: GRAY[400],
+    FIELD: GRAY[0],
   },
   dark: {
     ...COLOURS,
@@ -31,6 +32,7 @@ const theme = {
     TEXT: GRAY[100],
     PLACEHOLDER: GRAY[500],
     DIVIDER: GRAY[700],
+    FIELD: GRAY[800],
   },
 };
 
