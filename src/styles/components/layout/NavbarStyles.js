@@ -22,6 +22,10 @@ export const Nav = styled.div`
 `;
 
 export const NavLinks = styled.li`
+  a {
+    text-decoration: none;
+  }
+  margin-right: 1rem;
   list-style: none;
   flex-grow: ${(props) => (props.logo ? "1" : "0")};
 `;

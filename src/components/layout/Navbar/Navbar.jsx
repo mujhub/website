@@ -1,5 +1,7 @@
+import { Link } from "react-router-dom";
+
 import { Nav, NavLinks } from "../../../styles/components/layout/NavbarStyles";
-import { H6 } from "../../../styles/Shared/StyledTypes";
+import { H6, Type } from "../../../styles/Shared/StyledTypes";
 import ThemeSwitch from "./ThemeSwitcher";
 
 export const Navbar = ({ toggleTheme }) => {
@@ -7,7 +9,14 @@ export const Navbar = ({ toggleTheme }) => {
     <Nav className="navbar">
       {/* logo */}
       <NavLinks logo>
-        <H6>[logo] MUJ HUB</H6>
+        <Link to="/">
+          <H6>[logo] MUJ HUB</H6>
+        </Link>
+      </NavLinks>
+      <NavLinks>
+        <Link to="/team">
+          <Type>Team</Type>
+        </Link>
       </NavLinks>
       <ThemeSwitch toggleTheme={toggleTheme} />
     </Nav>
