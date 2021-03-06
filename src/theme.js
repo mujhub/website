@@ -30,7 +30,7 @@ const theme = {
     BG: BG_DARK,
     BG2: BG_SECONDARY_DARK,
     TEXT: GRAY[100],
-    PLACEHOLDER: GRAY[500],
+    PLACEHOLDER: GRAY[400],
     DIVIDER: GRAY[700],
     FIELD: GRAY[800],
   },
