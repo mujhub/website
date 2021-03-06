@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
+
+import { getMessMenu } from "../../services/firestore";
+
+// styles
 import { Divider } from "../../styles/components/HomeStyles";
 import { H6, Caption, Type } from "../../styles/Shared/StyledTypes";
-
 import {
   MessMenu,
   SpecialPill,
@@ -9,9 +12,6 @@ import {
   MealContainer,
   MenuItem,
 } from "../../styles/components/MessStyles";
-
-import { getMessMenu } from "../../services/firestore";
-import { COLOURS } from "../../constants/colours/colours";
 
 export const MessMenuCard = () => {
   const [isLoading, setIsLoading] = useState(false);
