@@ -12,7 +12,7 @@ export const Hero = () => {
     <>
       <HeroDiv>
         <div className="desktop">
-          <H5 style={{ margin: "1rem 0 1.5rem 0" }}>About us</H5>
+          <H5 style={{ margin: "1rem 0 1.5rem 0" }}>About Us</H5>
           <Type>
             MUJ HUB is an application that caters to the day-to-day needs of any
             student in our university, from displaying the mess menu to ordering
