@@ -1,7 +1,7 @@
 import styled from "styled-components";
-import theme from "../../theme";
 
 export const MessMenu = styled.div`
+  line-height: 1.2;
   background-color: ${(props) => props.theme.BG2};
   box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.1);
   width: 100%;
@@ -40,5 +40,23 @@ export const MealContainer = styled.div`
 `;
 
 export const MenuItem = styled.p`
-  margin-top: 0.5rem;
+  margin-top: 0rem;
+  color: ${(props) => props.theme.PLACEHOLDER};
+  line-height: 1.8;
+`;
+
+export const RibbonStyle = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* width: 80vw; */
+  margin: 0 5rem;
+
+  p {
+    color: ${(props) => props.theme.RED};
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+  }
 `;
