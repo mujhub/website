@@ -5,7 +5,7 @@ export const Nav = styled.div`
   /* padding-left: 5rem;
   padding-right: 5rem; */
   height: 4rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
