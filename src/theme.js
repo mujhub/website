@@ -11,6 +11,7 @@ import {
 
 const theme = {
   light: {
+    id: 100,
     ...COLOURS,
     GRAY: GRAY,
     PRIMARY: PRIMARY,
@@ -23,6 +24,7 @@ const theme = {
     FIELD: GRAY[0],
   },
   dark: {
+    id: 200,
     ...COLOURS,
     GRAY: GRAY,
     PRIMARY: PRIMARY,

@@ -18,8 +18,6 @@ import MessRoutes from "./routes/MessRoutes";
 import useLocalTheme from "./helper/themeHandler";
 import GlobalStyle from "./helper/globalStyle";
 
-import theme from "./theme";
-
 const App = () => {
   const [userChoiceTheme, setUserChoiceTheme] = useLocalTheme();
   return (
