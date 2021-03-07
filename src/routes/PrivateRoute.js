@@ -5,7 +5,7 @@ import { AuthContext } from "../contexts/Auth";
 
 const PrivateRoute = ({ children, ...rest }) => {
 	const { currentUser } = useContext(AuthContext);
-	const { path, url } = useRouteMatch();
+	const { path } = useRouteMatch();
 	return (
 		<Route {...rest} render={({ location }) => (currentUser ? children : <Redirect to={{ pathname: `${path}/login`, state: { from: path } }} />)} />
 	);
