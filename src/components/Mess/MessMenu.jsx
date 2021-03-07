@@ -6,6 +6,7 @@ import { getMessMenu } from "../../services/firestore";
 import { Divider } from "../../styles/components/HomeStyles";
 import { H6, Caption, Type } from "../../styles/Shared/StyledTypes";
 import { MessMenu, SpecialPill, Meal, MealContainer, MenuItem } from "../../styles/components/MessStyles";
+import { countMessView } from "../../services/analytics-ua";
 
 export const MessMenuCard = () => {
 	const [isLoading, setIsLoading] = useState(false);
@@ -58,6 +59,7 @@ export const MessMenuCard = () => {
 	);
 
 	useEffect(() => {
+		countMessView();
 		fetchData();
 	}, []);
 
