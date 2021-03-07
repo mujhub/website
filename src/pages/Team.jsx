@@ -10,30 +10,22 @@ import { TeamCard } from "../components/Team/TeamCard";
 import team from "../constants/teamMembers";
 
 const Team = () => {
-  return (
-    <>
-      <Subheading>
-        <H4>Team</H4>
-        <Type>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad nesciunt
-          possimus sapiente amet similique quo alias dignissimos dolor
-          provident.
-        </Type>
-      </Subheading>
+	return (
+		<>
+			<Subheading>
+				<H4>Our Team</H4>
+				<Type>
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad nesciunt possimus sapiente amet similique quo alias dignissimos dolor provident.
+				</Type>
+			</Subheading>
 
-      <Container center>
-        {team.map((member) => {
-          return (
-            <TeamCard
-              name={member.name}
-              post={member.post}
-              links={member.links}
-            />
-          );
-        })}
-      </Container>
-    </>
-  );
+			<Container center>
+				{team.map((member) => {
+					return <TeamCard name={member.name} post={member.post} links={member.links} />;
+				})}
+			</Container>
+		</>
+	);
 };
 
 export default Team;
