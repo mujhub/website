@@ -8,6 +8,7 @@ function useLocalTheme() {
     const themeParsed = JSON.parse(themeLocal);
     setUserChoiceTheme(themeParsed ? themeParsed : theme.dark);
   }, []);
+
   return [userChoiceTheme, setUserChoiceTheme];
 }
 

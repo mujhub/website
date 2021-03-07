@@ -2,7 +2,7 @@ import React from "react";
 
 import { countButtonClick } from "../../services/analytics-ua";
 
-import { H3, Type, Caption } from "../../styles/Shared/StyledTypes";
+import { H4, Type, Caption } from "../../styles/Shared/StyledTypes";
 import { Hero as HeroDiv } from "../../styles/components/HomeStyles";
 import { CallToActionButton } from "../../styles/Shared/Button";
 
@@ -33,7 +33,7 @@ export const Hero = () => {
             student friendly interface.
           </Type> */}
 
-					<H3 style={{ margin: "1rem 2rem 1.5rem 0" }}>Welcome to your one stop solution for everything in MUJ!</H3>
+					<H4 style={{ margin: "1rem 2rem 1.5rem 0" }}>Welcome to your one stop solution for everything in MUJ!</H4>
 					<Type style={{ margin: "1rem 3rem 1.5rem 0" }}>
 						Bear with us as we launch our array of features in Android and iOS applications very soon.
 					</Type>

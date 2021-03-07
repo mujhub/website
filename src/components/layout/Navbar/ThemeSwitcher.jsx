@@ -5,22 +5,31 @@ import { ThemeContext } from "styled-components";
 import theme from "../../../theme";
 
 const ThemeSwitch = ({ toggleTheme }) => {
-	const themeContext = useContext(ThemeContext);
-	const [icon, setIcon] = useState(themeContext === theme.dark ? <BsFillBrightnessHighFill /> : <BsMoon />);
+  const themeContext = useContext(ThemeContext);
 
-	const onClick = () => {
-		if (themeContext === theme.dark) {
-			toggleTheme(theme.light);
-			localStorage.setItem("theme-mujhub", JSON.stringify(theme.light));
-			setIcon(<BsMoon />);
-		} else {
-			toggleTheme(theme.dark);
-			localStorage.setItem("theme-mujhub", JSON.stringify(theme.dark));
-			setIcon(<BsFillBrightnessHighFill />);
-		}
-	};
+  const [icon, setIcon] = useState(
+    themeContext.id === theme.dark.id ? (
+      <BsFillBrightnessHighFill />
+    ) : (
+      <BsMoon />
+    )
+  );
 
-	return <Button onClick={onClick}>{icon}</Button>;
+  const onClick = () => {
+    if (themeContext.id === theme.dark.id) {
+      toggleTheme(theme.light);
+      localStorage.setItem("theme-mujhub", JSON.stringify(theme.light));
+      setIcon(<BsMoon />);
+      console.log(`dark to light : ${themeContext.id}`);
+    } else {
+      toggleTheme(theme.dark);
+      localStorage.setItem("theme-mujhub", JSON.stringify(theme.dark));
+      setIcon(<BsFillBrightnessHighFill />);
+      console.log(`light to dark : ${themeContext.id}`);
+    }
+  };
+
+  return <Button onClick={onClick}>{icon}</Button>;
 };
 
 export default ThemeSwitch;
