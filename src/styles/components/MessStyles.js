@@ -60,3 +60,8 @@ export const RibbonStyle = styled.div`
     cursor: pointer;
   }
 `;
+
+export const LoginStyles = styled.div`
+  /* min-height: calc(100vh -6px -83.2); */
+  height: calc(100vh - 96px - 177px);
+`;
