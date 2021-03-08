@@ -4,6 +4,7 @@ import { Type } from "../../../styles/Shared/StyledTypes";
 import { Divider } from "../../../styles/components/HomeStyles";
 import { MdEmail } from "react-icons/md";
 import { Link } from "react-router-dom";
+
 export const Footer = () => {
   return (
     <FooterStyles>

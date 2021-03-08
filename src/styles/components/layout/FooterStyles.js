@@ -3,9 +3,10 @@ import styled from "styled-components";
 export const FooterStyles = styled.footer`
   background-color: ${(props) => props.theme.BG2};
   padding: 0rem 6rem;
-  .FooterColumn {
-    display: flex;
-    flex-direction: column;
+  margin-top: 1rem;
+
+  a {
+    color: ${(props) => props.theme.PLACEHOLDER};
   }
 
   p {
@@ -16,6 +17,19 @@ export const FooterStyles = styled.footer`
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      padding-bottom: 2rem;
+    }
+  }
+
+  .FooterColumn {
+    display: flex;
+    flex-direction: column;
+    @media (max-width: 768px) {
+      text-align: center;
+    }
   }
 
   .FooterLinks {
