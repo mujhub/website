@@ -60,11 +60,14 @@ export const Hero = styled.div`
   /* section .description */
   .description {
     margin: 1rem 3rem 2rem 0;
+    /* font-weight: bold; */
   }
 
   /* Coming soon text */
   .comingSoon {
+    color: ${(props) => props.theme.TEXT};
     margin-top: 1rem;
+    margin-bottom: 1rem;
   }
 `;
 

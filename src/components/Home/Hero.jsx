@@ -20,6 +20,9 @@ export const Hero = () => {
             Bear with us as we launch our array of features in Android and iOS
             applications very soon.
           </Type>
+          <Caption className="comingSoon">
+            ✨ COMING SOON TO PLAY STORE AND APP STORE ✨
+          </Caption>
         </div>
 
         <div className="mobile">
@@ -30,9 +33,8 @@ export const Hero = () => {
             </CallToActionButton> */}
             <PWAInstallerBtn />
           </div>
-
-          <Caption className="comingSoon">
-            COMING SOON TO PLAY STORE AND APP STORE
+          <Caption>
+            If this does not work, try Options > Add to home Screen.
           </Caption>
         </div>
       </HeroDiv>
