@@ -1,19 +1,14 @@
 import React from "react";
 
-import { countButtonClick } from "../../services/analytics-ua";
-
 import { H4, Type, Caption } from "../../styles/Shared/StyledTypes";
 import { Hero as HeroDiv } from "../../styles/components/HomeStyles";
 import { CallToActionButton } from "../../styles/Shared/Button";
 
 // icons
 import { FiDownload } from "react-icons/fi";
+import PWAInstallerBtn from "../Misc/PWAInstallerBtn";
 
 export const Hero = () => {
-	const handleWebCTAClick = () => {
-		countButtonClick("Install WebApp");
-	};
-
 	return (
 		<>
 			<HeroDiv>
@@ -45,9 +40,7 @@ export const Hero = () => {
               <FaGooglePlay style={{ marginRight: "0.5rem" }} /> Get it on
               Google Play
             </CallToActionButton> */}
-						<CallToActionButton Primary onClick={handleWebCTAClick}>
-							<FiDownload style={{ marginRight: "0.5rem" }} /> Install The Web Application
-						</CallToActionButton>
+						<PWAInstallerBtn />
 					</div>
 
 					<Caption style={{ marginTop: "1rem" }}>COMING SOON TO PLAY STORE AND APP STORE</Caption>
