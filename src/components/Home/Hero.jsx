@@ -22,7 +22,7 @@ export const Hero = () => {
           </Type>
         </div>
 
-        <div className="mobile" style={{ marginBottom: "2rem" }}>
+        <div className="mobile">
           <div className="buttons">
             {/* <CallToActionButton Primary>
               <FaGooglePlay style={{ marginRight: "0.5rem" }} /> Get it on

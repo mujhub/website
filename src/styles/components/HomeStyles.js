@@ -9,6 +9,32 @@ export const Hero = styled.div`
   width: 100%;
   align-self: flex-end;
 
+  .desktop {
+    @media (max-width: 768px) {
+      margin-top: 6rem;
+    }
+  }
+
+  .mobile {
+    @media (max-width: 768px) {
+      display: block;
+    }
+  }
+
+  .buttons {
+    display: flex;
+    a {
+      margin-right: 1rem;
+    }
+    @media (max-width: 768px) {
+      flex-direction: column;
+      a {
+        margin-right: 0;
+        width: auto;
+        justify-content: center;
+      }
+    }
+  }
   // logo in hero section
   .logo {
     @media (max-width: 768px) {
