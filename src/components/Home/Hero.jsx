@@ -2,11 +2,10 @@ import React from "react";
 
 import { H4, Type, Caption } from "../../styles/Shared/StyledTypes";
 import { Hero as HeroDiv } from "../../styles/components/HomeStyles";
-import { CallToActionButton } from "../../styles/Shared/Button";
 
-// icons
-import { FiDownload } from "react-icons/fi";
 import PWAInstallerBtn from "../Misc/PWAInstallerBtn";
+
+import logo256 from "../../images/logo256.png";
 
 export const Hero = () => {
 	return (
@@ -27,7 +26,7 @@ export const Hero = () => {
             with the use of technology and present the solutions to you in our
             student friendly interface.
           </Type> */}
-
+					<img className='logo' src={logo256} />
 					<H4 style={{ margin: "1rem 2rem 1.5rem 0" }}>Welcome to your one stop solution for everything in MUJ!</H4>
 					<Type style={{ margin: "1rem 3rem 1.5rem 0" }}>
 						Bear with us as we launch our array of features in Android and iOS applications very soon.

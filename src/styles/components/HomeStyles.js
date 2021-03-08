@@ -34,6 +34,17 @@ export const Hero = styled.div`
 			display: block;
 		}
 	}
+	.logo {
+		@media (max-width: 768px) {
+			display: block;
+			margin-left: auto;
+			margin-right: auto;
+			height: 30%;
+			width: 30%;
+		}
+		height: 20%;
+		width: 20%;
+	}
 `;
 
 export const Card = styled.div`
