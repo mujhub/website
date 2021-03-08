@@ -19,7 +19,7 @@ export const Footer = () => {
 
           <div className="FooterLinks">
             <Link to="/">Home</Link>
-            <Link to="/team">Our Team</Link>
+            <Link to="/team">Team</Link>
           </div>
         </div>
       </div>
