@@ -2,7 +2,10 @@ import { Link } from "react-router-dom";
 
 import { Nav, NavLinks } from "../../../styles/components/layout/NavbarStyles";
 import { H6, Type } from "../../../styles/Shared/StyledTypes";
+
 import ThemeSwitch from "./ThemeSwitcher";
+
+import logo64 from "../../../images/logo64.png";
 
 export const Navbar = ({ toggleTheme }) => {
 	return (
@@ -10,7 +13,8 @@ export const Navbar = ({ toggleTheme }) => {
 			{/* logo */}
 			<NavLinks logo>
 				<Link to='/'>
-					<H6>[logo] MUJ HUB</H6>
+					<img src={logo64} style={{ height: 30, width: 30 }} />
+					<H6>MUJ HUB</H6>
 				</Link>
 			</NavLinks>
 			<NavLinks>
