@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import theme from "../../theme";
 
 export const Divider = styled.div`
   height: 1px;
@@ -9,53 +8,54 @@ export const Divider = styled.div`
 export const Hero = styled.div`
   width: 100%;
   align-self: flex-end;
-  .desktop {
-    @media (max-width: 768px) {
-      margin-top: 6rem;
-      padding-right: 1rem;
-    }
-  }
-  .mobile {
-    .buttons {
-      display: flex;
-      a {
-        margin-right: 1rem;
-      }
-      @media (max-width: 768px) {
-        flex-direction: column;
-        a {
-          margin-right: 0;
-          width: auto;
-          justify-content: center;
-        }
-      }
-    }
-    @media (max-width: 768px) {
-      display: block;
-    }
-  }
+
+  // logo in hero section
   .logo {
     @media (max-width: 768px) {
       display: block;
-      margin-left: auto;
-      margin-right: auto;
-      height: 30%;
-      width: 30%;
+      height: 18%;
+      width: 18%;
+      margin-bottom: 1.5rem;
     }
-    height: 20%;
-    width: 20%;
+    border-radius: 8px;
+    height: 12%;
+    width: 12%;
+    margin-bottom: 1rem;
+  }
+
+  /* Section headings */
+  .sectionHeading {
+    margin: 1rem 2rem 1.5rem 0;
+    @media (max-width: 768px) {
+      margin: 0;
+    }
+  }
+
+  /* section .description */
+  .description {
+    margin: 1rem 3rem 2rem 0;
+  }
+
+  /* Coming soon text */
+  .comingSoon {
+    margin-top: 1rem;
   }
 `;
 
+// feature Card
 export const Card = styled.div`
-  padding: 1.5rem;
+  background-color: ${(props) => props.theme.BG2};
+  border-radius: 8px;
+  margin: 1.5rem;
+  padding: 1rem;
   max-width: 250px;
   border-radius: 8px;
   display: flex;
-  align-items: center;
+  align-items: baseline;
   justify-content: center;
   flex-direction: column;
-  /* margin-right: 2rem; */
+  transition: ease-in all;
+  cursor: pointer;
 
   .icon {
     padding: 1rem;
@@ -65,8 +65,10 @@ export const Card = styled.div`
     box-shadow: 0px 0px 20px ${(props) => props.color}50;
     border-radius: 8px;
   }
-  .text {
-    text-align: center;
+
+  :hover {
+    box-shadow: 0px 0px 50px ${(props) => props.color}10;
+    transform: scale(1.01);
   }
 
   @media (max-width: 768px) {
@@ -74,24 +76,26 @@ export const Card = styled.div`
   }
 `;
 
+// featured card grid
 export const CardStack = styled.div`
   margin-top: 1.5rem;
   display: grid;
-  align-items: baseline;
+  justify-content: center;
+  align-items: flex-end;
   grid-template-columns: auto auto auto auto;
 
   @media (max-width: 768px) {
-    grid-template-columns: auto auto;
+    grid-template-columns: auto;
   }
 `;
 
 export const Subheading = styled.div`
   display: flex;
+  padding: 0 20rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
-  margin-bottom: 1rem;
 
   h4 {
     margin: 0 0 1rem 0;
@@ -100,17 +104,25 @@ export const Subheading = styled.div`
   p {
     color: ${(props) => props.theme.PLACEHOLDER};
   }
+
+  .services {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 768px) {
+    padding: 0;
+  }
 `;
 
+// Form
 export const FormStyles = styled.section`
-  margin-bottom: 6rem;
+  margin-bottom: 3rem;
   div {
     display: flex;
     flex-direction: column;
     label {
       margin-top: 1rem;
       margin-bottom: 1rem;
-      margin-right: 2rem;
     }
     input,
     textarea,
@@ -143,12 +155,9 @@ export const FormStyles = styled.section`
   }
   .submitBtn {
     padding: 1rem;
-    margin: 1.5rem 0;
+    margin: 2rem 0;
     width: 100%;
     display: block;
-    @media (max-width: 768px) {
-      width: 100%;
-    }
   }
 
   option,
