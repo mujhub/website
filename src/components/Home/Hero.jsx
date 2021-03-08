@@ -34,7 +34,7 @@ export const Hero = () => {
             <PWAInstallerBtn />
           </div>
           <Caption>
-            If this does not work, try Options > Add to home Screen.
+            If this does not work, try Options > Add to Home Screen.
           </Caption>
         </div>
       </HeroDiv>
