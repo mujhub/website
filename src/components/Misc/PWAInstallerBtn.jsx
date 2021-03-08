@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
-import { FiDownload } from "react-icons/fi";
+import { FiDownload, FiCheck } from "react-icons/fi";
 
 import { CallToActionButton } from "../../styles/Shared/Button";
 import { countButtonClick } from "../../services/analytics-ua";
 
 const PWAInstallerBtn = () => {
-	const [supportsPWA, setSupportsPWA] = useState(false);
 	const [promptInstall, setPromptInstall] = useState(null);
+	const [alreadyInstalled, setAlreadyInstalled] = useState(false);
 
 	useEffect(() => {
+		setAlreadyInstalled(window.matchMedia("(display-mode: standalone)").matches);
+
 		const handler = (e) => {
 			e.preventDefault();
-			setSupportsPWA(true);
 			setPromptInstall(e);
 		};
 		window.addEventListener("beforeinstallprompt", handler);
@@ -27,12 +28,15 @@ const PWAInstallerBtn = () => {
 		countButtonClick("Install WebApp");
 		promptInstall.prompt();
 	};
-	if (!supportsPWA) {
-		return null;
-	}
-	return (
+
+	return !alreadyInstalled ? (
 		<CallToActionButton Primary onClick={handleInstallClick}>
-			<FiDownload style={{ marginRight: "0.5rem" }} /> Install The Web Application
+			<FiDownload style={{ marginRight: "0.5rem" }} />
+			Install The Web Application
+		</CallToActionButton>
+	) : (
+		<CallToActionButton>
+			<FiCheck style={{ marginRight: "0.5rem" }} /> Installed
 		</CallToActionButton>
 	);
 };
