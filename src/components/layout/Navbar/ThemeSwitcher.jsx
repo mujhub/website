@@ -20,12 +20,10 @@ const ThemeSwitch = ({ toggleTheme }) => {
       toggleTheme(theme.light);
       localStorage.setItem("theme-mujhub", JSON.stringify(theme.light));
       setIcon(<BsMoon />);
-      console.log(`dark to light : ${themeContext.id}`);
     } else {
       toggleTheme(theme.dark);
       localStorage.setItem("theme-mujhub", JSON.stringify(theme.dark));
       setIcon(<BsFillBrightnessHighFill />);
-      console.log(`light to dark : ${themeContext.id}`);
     }
   };
 
