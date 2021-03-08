@@ -1,7 +1,11 @@
 import React from "react";
 import { Container } from "../styles/Shared/Container";
 import { H4, Type } from "../styles/Shared/StyledTypes";
-import { TeamGrid, TeamHeaderContainer } from "../styles/components/TeamStyles";
+import {
+  TeamGrid,
+  TeamHeaderContainer,
+  TeamContainer,
+} from "../styles/components/TeamStyles";
 // team card
 import { TeamCard } from "../components/Team/TeamCard";
 
@@ -10,7 +14,7 @@ import team from "../constants/teamMembers";
 
 const Team = () => {
   return (
-    <>
+    <TeamContainer>
       <TeamHeaderContainer>
         <H4>Our Team</H4>
         <Type className="TeamHeaderDesc">
@@ -34,7 +38,7 @@ const Team = () => {
           })}
         </TeamGrid>
       </Container>
-    </>
+    </TeamContainer>
   );
 };
 

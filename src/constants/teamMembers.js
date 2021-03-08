@@ -23,7 +23,7 @@ const team = [
   },
   {
     name: "Gourav Moonka",
-    post: "PR and DB Manager",
+    post: "PR & DB Manager",
     img: gourav,
     links: [
       {
@@ -45,6 +45,10 @@ const team = [
         href: "https://www.linkedin.com/in/siddheshkataria/",
         icon: "Linkedin",
       },
+      {
+        href: "https://www.instagram.com/sidd_kataria/",
+        icon: "Instagram",
+      },
     ],
   },
   {
@@ -64,7 +68,7 @@ const team = [
   },
   {
     name: "Manavendra Sen",
-    post: "UI/UX Designer and Developer",
+    post: "UI/UX Designer & Web Developer",
     img: manavendra,
     links: [
       {

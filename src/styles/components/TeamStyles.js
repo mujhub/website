@@ -58,3 +58,7 @@ export const TeamGrid = styled.div`
     grid-template-columns: auto;
   }
 `;
+
+export const TeamContainer = styled.section`
+  min-height: calc(100vh - 96px - 180px);
+`;

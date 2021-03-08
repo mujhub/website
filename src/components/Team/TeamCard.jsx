@@ -1,7 +1,6 @@
 import React from "react";
 import { H6, Type } from "../../styles/Shared/StyledTypes";
 import { Card } from "../../styles/components/TeamStyles";
-import { Divider } from "../../styles/components/HomeStyles";
 import {
   FaLinkedin,
   FaGithub,
