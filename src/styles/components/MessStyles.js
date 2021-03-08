@@ -17,9 +17,13 @@ export const MessMenu = styled.div`
 `;
 
 export const SpecialPill = styled.div`
+  border-radius: 16px;
+  padding: 0.3rem 0.5rem;
+  border: 2px solid ${(props) => props.theme.ACCENT};
   p {
-    color: ${(props) => props.theme.YELLOW};
-    margin-top: 0;
+    color: ${(props) => props.theme.ACCENT};
+    font-weight: 700;
+    margin: 0;
   }
 `;
 
