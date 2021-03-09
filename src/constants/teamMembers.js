@@ -3,7 +3,7 @@ import vaibhav from "../images/TeamImages/vaibhav.jpeg";
 import gourav from "../images/TeamImages/gourav.jpg";
 import siddhesh from "../images/TeamImages/siddhesh.jpeg";
 import divyanshu from "../images/TeamImages/divyanshu.jpeg";
-import manavendra from "../images/TeamImages/manavendra.jpg";
+import manavendra from "../images/TeamImages/manavendra.jpeg";
 import kartik from "../images/TeamImages/kartik.jpg";
 const team = [
   {
@@ -28,7 +28,7 @@ const team = [
     links: [
       {
         href: "https://github.com/heyy-gm",
-        icon: "Linkedin",
+        icon: "Github",
       },
       {
         href: "https://instagram.com/heyy_gm",
