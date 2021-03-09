@@ -11,8 +11,9 @@ export const MessMenu = styled.div`
   margin: 1rem;
 
   @media (max-width: 768px) {
+    width: calc(100vw - 6rem);
     margin: 0;
-    width: auto;
+    /* width: auto; */
   }
 `;
 
