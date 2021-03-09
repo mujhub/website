@@ -23,7 +23,9 @@ const Dashboard = ({ currentMenuData }) => {
 	const textToMenu = (textMenu) => {
 		let arrayMenu = [];
 		textMenu = textMenu.trim();
-		arrayMenu = textMenu.split("\n");
+		let tempArrayMenu = textMenu.split("\n");
+		for (let i = 0; i < tempArrayMenu.length; i++) if (tempArrayMenu[i].trim()) arrayMenu.push(tempArrayMenu[i]);
+
 		return arrayMenu;
 	};
 
