@@ -1,7 +1,7 @@
 // images
-import vaibhav from "../images/TeamImages/vaibhav.jpeg";
+import vaibhav from "../images/TeamImages/vaibhav.jpg";
 import gourav from "../images/TeamImages/gourav.jpg";
-import siddhesh from "../images/TeamImages/siddhesh.jpeg";
+import siddhesh from "../images/TeamImages/siddhesh.jpg";
 import divyanshu from "../images/TeamImages/divyanshu.jpeg";
 import manavendra from "../images/TeamImages/manavendra.jpeg";
 import kartik from "../images/TeamImages/kartik.jpg";
