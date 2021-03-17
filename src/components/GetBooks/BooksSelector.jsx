@@ -1,65 +1,78 @@
 import React from "react";
 
-import { H6 } from "../../styles/Shared/StyledTypes";
-
+import { H6, Type } from "../../styles/Shared/StyledTypes";
+import {
+  Item,
+  ItemContainer,
+  FormSection,
+} from "../../styles/components/BookStyles";
 import { COLOURS, GRAY } from "../../constants/colours/colours";
 
-const BooksSelector = ({ booksData, handleBookSelect, isPackSelected, additionalBooks, handleAdditionalBooksChange }) => {
-	return (
-		<div>
-			<H6>Books</H6>
-			<div style={{ padding: 10, borderColor: "white", borderWidth: 3, borderStyle: "dashed", backgroundColor: isPackSelected ? "red" : null }}>
-				{booksData.map(
-					(data, i) =>
-						data.isPack && (
-							<div
-								key={data.id}
-								style={{ height: 75, width: 200, backgroundColor: data.selected ? COLOURS.GREEN1 : GRAY[500], margin: 5 }}
-								onClick={() => {
-									handleBookSelect(i);
-								}}>
-								Title: {data.name}
-								<br />
-								Author: {data.description}
-								<br />
-								{!isPackSelected && `Price: ${data.price}`}
-								<br />
-							</div>
-						)
-				)}
-			</div>
-			{booksData.map(
-				(data, i) =>
-					!data.isPack && (
-						<div
-							key={data.id}
-							style={{ height: 75, width: 200, backgroundColor: data.selected ? COLOURS.GREEN1 : GRAY[500], margin: 5 }}
-							onClick={() => {
-								handleBookSelect(i);
-							}}>
-							Title: {data.name}
-							<br />
-							Author: {data.description}
-							<br />
-							Price: {data.price}
-							<br />
-						</div>
-					)
-			)}
-			<br />
-			<label>Additional Books (subject to availability)</label>
-			<br />
-			<textarea
-				rows={5}
-				cols={10}
-				name='menu'
-				placeholder='Ex: Engineering Mathematics - Rammanna'
-				value={additionalBooks}
-				onChange={handleAdditionalBooksChange}
-			/>
-			<br />
-		</div>
-	);
+const BooksSelector = ({
+  booksData,
+  handleBookSelect,
+  isPackSelected,
+  additionalBooks,
+  handleAdditionalBooksChange,
+}) => {
+  return (
+    <>
+      <H6>Books</H6>
+      <Type>
+        Lorem Ipsum is simply dummy text of the printing and typesetting
+        industry.
+      </Type>
+      <ItemContainer isPackSelected={isPackSelected}>
+        {booksData.map(
+          (data, i) =>
+            data.isPack && (
+              <Item
+                selected={data.selected}
+                key={data.id}
+                onClick={() => {
+                  handleBookSelect(i);
+                }}
+              >
+                <p>{data.name}</p>
+                <p>{data.description}</p>
+                <p>{!isPackSelected && `Price: ${data.price}`}</p>
+              </Item>
+            )
+        )}
+      </ItemContainer>
+      <ItemContainer>
+        {booksData.map(
+          (data, i) =>
+            !data.isPack && (
+              <Item
+                key={data.id}
+                selected={data.selected}
+                onClick={() => {
+                  handleBookSelect(i);
+                }}
+              >
+                <p>{data.name}</p>
+                <p>{data.description}</p>
+                <p>Price: {data.price}</p>
+              </Item>
+            )
+        )}
+      </ItemContainer>
+      <FormSection>
+        <label className="additionalBooksLable">
+          Additional Books (subject to availability) :
+        </label>
+        <textarea
+          rows="10"
+          cols="50"
+          name="menu"
+          placeholder="Ex: Engineering Mathematics - Rammanna"
+          value={additionalBooks}
+          onChange={handleAdditionalBooksChange}
+        />
+      </FormSection>
+    </>
+  );
 };
 
 export default BooksSelector;
