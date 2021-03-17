@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const Divider = styled.div`
   height: 1px;
+  width: 100%;
   background-color: ${(props) => props.theme.DIVIDER};
 `;
 
@@ -84,7 +85,6 @@ export const Card = styled.div`
   justify-content: center;
   flex-direction: column;
   transition: ease-in all;
-  cursor: pointer;
 
   .icon {
     padding: 1rem;
@@ -95,10 +95,10 @@ export const Card = styled.div`
     border-radius: 8px;
   }
 
-  :hover {
+  /* :hover {
     box-shadow: 0px 0px 50px ${(props) => props.color}10;
     transform: scale(1.01);
-  }
+  } */
 
   @media (max-width: 768px) {
     padding: 1rem;
