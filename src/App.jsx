@@ -9,7 +9,7 @@ import { Footer } from "./components/layout/Footer/Footer";
 // Pages
 import Home from "./pages/Home";
 import Team from "./pages/Team";
-// import Eateries from "./pages/Eateries";
+import GetBooks from "./pages/GetBooks";
 
 import { AuthProvider } from "./contexts/Auth";
 
@@ -41,6 +41,7 @@ const App = () => {
               <Route path="/mess">
                 <MessRoutes />
               </Route>
+              <Route exact path="/books" component={GetBooks} />
               <Route exact path="/eateries" component={Eateries} />
               <Route component={NotFound} />
             </Switch>
