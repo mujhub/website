@@ -9,6 +9,7 @@ import { Footer } from "./components/layout/Footer/Footer";
 // Pages
 import Home from "./pages/Home";
 import Team from "./pages/Team";
+import GetBooks from "./pages/GetBooks";
 
 import { AuthProvider } from "./contexts/Auth";
 
@@ -22,30 +23,31 @@ import NotFound from "./components/Misc/NotFound";
 import AnalyticSupplier from "./components/Misc/AnalyticSupplier";
 
 const App = () => {
-  const [userChoiceTheme, setUserChoiceTheme] = useLocalTheme();
+	const [userChoiceTheme, setUserChoiceTheme] = useLocalTheme();
 
-  return (
-    <AuthProvider>
-      <ThemeProvider theme={userChoiceTheme}>
-        <GlobalStyle />
-        <div className="App">
-          <Router>
-            <Navbar toggleTheme={setUserChoiceTheme} />
-            <AnalyticSupplier />
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route exact path="/team" component={Team} />
-              <Route path="/mess">
-                <MessRoutes />
-              </Route>
-              <Route component={NotFound} />
-            </Switch>
-            <Footer />
-          </Router>
-        </div>
-      </ThemeProvider>
-    </AuthProvider>
-  );
+	return (
+		<AuthProvider>
+			<ThemeProvider theme={userChoiceTheme}>
+				<GlobalStyle />
+				<div className='App'>
+					<Router>
+						<Navbar toggleTheme={setUserChoiceTheme} />
+						<AnalyticSupplier />
+						<Switch>
+							<Route exact path='/' component={Home} />
+							<Route exact path='/team' component={Team} />
+							<Route path='/mess'>
+								<MessRoutes />
+							</Route>
+							<Route exact path='/books' component={GetBooks} />
+							<Route component={NotFound} />
+						</Switch>
+						<Footer />
+					</Router>
+				</div>
+			</ThemeProvider>
+		</AuthProvider>
+	);
 };
 
 export default App;
