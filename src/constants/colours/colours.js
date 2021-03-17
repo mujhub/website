@@ -29,3 +29,5 @@ export const BG_DARK = "#080910";
 export const BG_SECONDARY_DARK = "#141621";
 export const BG_LIGHT = GRAY[200];
 export const BG_SECONDARY_LIGHT = GRAY[0];
+export const SELECTED_LIGHT = "#21965320";
+export const SELECTED_DARK = "#27AE6050";

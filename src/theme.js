@@ -7,6 +7,8 @@ import {
   BG_SECONDARY_LIGHT,
   PRIMARY,
   ACCENT,
+  SELECTED_LIGHT,
+  SELECTED_DARK,
 } from "./constants/colours/colours";
 
 const theme = {
@@ -14,6 +16,7 @@ const theme = {
     id: 100,
     ...COLOURS,
     GRAY: GRAY,
+    SELECTED: SELECTED_LIGHT,
     PRIMARY: PRIMARY,
     ACCENT: ACCENT,
     BG: BG_LIGHT,
@@ -27,6 +30,7 @@ const theme = {
     id: 200,
     ...COLOURS,
     GRAY: GRAY,
+    SELECTED: SELECTED_DARK,
     PRIMARY: PRIMARY,
     ACCENT: ACCENT,
     BG: BG_DARK,
