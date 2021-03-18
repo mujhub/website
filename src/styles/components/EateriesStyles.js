@@ -5,6 +5,7 @@ export const MenuTable = styled.table`
 `;
 
 export const MenuRow = styled.tr`
+  align-items: center;
   &.tableHeader {
     td {
       text-align: left;
@@ -18,11 +19,11 @@ export const MenuRow = styled.tr`
 export const MenuData = styled.td`
   vertical-align: top;
   padding-right: 1rem;
-  padding-top: 1rem;
-  width: ${(props) => (props.description ? "40%" : "auto")};
+  width: ${(props) => (props.description ? "30%" : "auto")};
 
   input,
   textarea {
+    margin-top: 1rem;
     display: inline;
     line-height: 2;
     max-height: 8rem;
@@ -44,8 +45,14 @@ export const MenuData = styled.td`
 
   input {
     &.priceField {
-      max-width: 40px;
+      max-width: 25px;
       margin-right: 1rem;
+      display: inline;
+      /* color: green; */
+    }
+    &.typeField {
+      max-width: 25px;
+      /* margin-right: 1rem; */
       display: inline;
       /* color: green; */
     }
@@ -53,11 +60,48 @@ export const MenuData = styled.td`
 `;
 
 export const PriceButton = styled.button`
+  margin-top: 1rem;
+  margin-right: 0.5rem;
+  width: 35px;
+  height: 35px;
   padding: 0.5rem;
   border: none;
   border-radius: 4px;
+  font-size: 1.25rem;
   color: #ffffff;
-  margin-top: 0;
   font-weight: 600;
+  /* border: 2px solid ${(props) => props.theme.PRIMARY}; */
+  /* color: ${(props) => props.theme.PRIMARY}; */
   background-color: ${(props) => props.theme.PRIMARY};
+`;
+
+export const DeleteButton = styled.button`
+  margin-top: 1rem;
+  margin-right: 0.5rem;
+  width: 35px;
+  height: 35px;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.25rem;
+  color: #ffffff;
+  font-weight: 600;
+  /* border: 2px solid ${(props) => props.theme.PRIMARY}; */
+  /* color: ${(props) => props.theme.PRIMARY}; */
+  background-color: ${(props) => props.theme.RED};
+`;
+export const AddButton = styled.button`
+  margin-top: 1rem;
+  margin-right: 0.5rem;
+  width: 100%;
+  height: 35px;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 4px;
+  /* font-size: 1rem; */
+  color: #ffffff;
+  font-weight: 600;
+  /* border: 2px solid ${(props) => props.theme.PRIMARY}; */
+  /* color: ${(props) => props.theme.PRIMARY}; */
+  background-color: ${(props) => props.theme.GREEN1};
 `;
