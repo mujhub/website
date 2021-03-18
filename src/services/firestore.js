@@ -24,3 +24,7 @@ export const getMessMenu = () => {
 export const setMessMenu = (meals) => {
 	return db.collection("mess").doc("menuData").set({ meals, updatedAt: firebase.firestore.FieldValue.serverTimestamp() });
 };
+
+export const getBookStoreData = () => {
+	return db.collection("menus").doc("kumawat-stationery").get();
+};
