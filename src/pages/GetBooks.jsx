@@ -9,6 +9,7 @@ import { BookFormStyle, InputWrapper, FormSection, PriceSection } from "../style
 import BooksSelector from "../components/GetBooks/BooksSelector";
 import Header from "../components/GetBooks/Header";
 import StationerySelector from "../components/GetBooks/StationerySelector";
+import Modal from "../components/GetBooks/Modal";
 
 import { getBookStoreData } from "../services/firestore";
 import { uploadOrder } from "../services/storage";
@@ -27,6 +28,10 @@ const GetBooks = () => {
 	const [booksData, setBooksData] = useState([]);
 	const [additionalBooks, setAdditionalBooks] = useState("");
 	const [stationeryData, setStationeryData] = useState([]);
+
+	const [showModal, setShowModal] = useState(false);
+	const [currentOrder, setCurrentOrder] = useState({});
+	const [submitted, setSubmitted] = useState(false);
 
 	const handleCycleChange = (e) => {
 		setCurrentCycle(e.target.value);
@@ -53,6 +58,27 @@ const GetBooks = () => {
 		let data = stationeryData;
 		data[i].selected = !data[i].selected;
 		setStationeryData([...data]);
+	};
+
+	const handleFormSubmit = (e) => {
+		e.preventDefault();
+
+		setIsLoading(false);
+
+		const final = {
+			name,
+			phone,
+			booksData,
+			additionalBooks,
+			stationeryData,
+			booksPrice,
+			stationeryPrice,
+		};
+		setShowModal(true);
+		setCurrentOrder(final);
+		// console.log(showModal);
+		setSubmitted(true);
+		return final;
 	};
 
 	const fetchData = async () => {
@@ -121,75 +147,81 @@ const GetBooks = () => {
 
 	return (
 		<Flex column p='1rem 10rem'>
+			{submitted === true ? <Modal show={showModal} hide={setShowModal} data={currentOrder} /> : null}
+
 			<Header />
 			<Divider />
 			<BookFormStyle>
-				<FormSection>
-					<H6>Current cycle</H6>
-					<InputWrapper>
-						<label>Select your cycle</label>
-						<select id='cycle' onChange={handleCycleChange}>
-							<optgroup label='First Year'>
-								<option value='p'>Physics</option>
-								<option value='c'>Chemistry</option>
-							</optgroup>
-						</select>
-					</InputWrapper>
-				</FormSection>
-				<FormSection>
-					<H6>Contact Details</H6>
-					<InputWrapper>
-						<label>Full Name</label>
-						<input style={{ fontSize: "larger" }} placeholder='Full Name' name='name' onChange={handleNameChange} value={name} />
-					</InputWrapper>
-					<InputWrapper>
-						<label>Phone Number</label>
-						<input style={{ fontSize: "larger" }} placeholder='Phone Number' name='phone' onChange={handlePhoneChange} value={phone} />
-					</InputWrapper>
-				</FormSection>
-				<Divider />
+				<form onSubmit={handleFormSubmit}>
+					<FormSection>
+						<H6>Current cycle</H6>
+						<InputWrapper>
+							<label>Select your cycle</label>
+							<select id='cycle' onChange={handleCycleChange}>
+								<optgroup label='First Year'>
+									<option value='p'>Physics</option>
+									<option value='c'>Chemistry</option>
+								</optgroup>
+							</select>
+						</InputWrapper>
+					</FormSection>
+					<FormSection>
+						<H6>Contact Details</H6>
+						<InputWrapper>
+							<label>Full Name</label>
+							<input style={{ fontSize: "larger" }} placeholder='Full Name' name='name' onChange={handleNameChange} value={name} />
+						</InputWrapper>
+						<InputWrapper>
+							<label>Phone Number</label>
+							<input style={{ fontSize: "larger" }} placeholder='Phone Number' name='phone' onChange={handlePhoneChange} value={phone} />
+						</InputWrapper>
+					</FormSection>
+					<Divider />
 
-				<FormSection>
-					<BooksSelector
-						booksData={booksData}
-						handleBookSelect={handleBookSelect}
-						isPackSelected={isPackSelected}
-						additionalBooks={additionalBooks}
-						handleAdditionalBooksChange={handleAdditionalBooksChange}
-						booksPrice={booksPrice}
-					/>
-				</FormSection>
-				<Divider />
-				<FormSection>
-					<StationerySelector stationeryData={stationeryData} handleStationerySelect={handleStationerySelect} stationeryPrice={stationeryPrice} />
-				</FormSection>
+					<FormSection>
+						<BooksSelector
+							booksData={booksData}
+							handleBookSelect={handleBookSelect}
+							isPackSelected={isPackSelected}
+							additionalBooks={additionalBooks}
+							handleAdditionalBooksChange={handleAdditionalBooksChange}
+							booksPrice={booksPrice}
+						/>
+					</FormSection>
+					<Divider />
+					<FormSection>
+						<StationerySelector stationeryData={stationeryData} handleStationerySelect={handleStationerySelect} stationeryPrice={stationeryPrice} />
+					</FormSection>
 
-				<Divider />
-				<FormSection>
-					<PriceSection final>
-						<Type style={{ textAlign: "-webkit-right", fontWeight: 700 }}>
-							(Books + Stationery)
-							<br />
-							{`Grand Total:  ₹ ${booksPrice[0] + stationeryPrice}`}
-							{booksPrice[0] !== booksPrice[1] ? ` to ₹ ${booksPrice[1] + stationeryPrice}` : null}
-							<br />
-						</Type>
-						{isPackSelected && (
-							<Type style={{ textAlign: "-webkit-right", fontWeight: 200 }}>
-								Effective Grand Total <br /> ₹ {booksPrice[0] + stationeryPrice} - ₹ 1000
-								<br /> ₹{booksPrice[0] + stationeryPrice - 1000}
+					<Divider />
+					<FormSection>
+						<PriceSection final>
+							<Type style={{ textAlign: "-webkit-right", fontWeight: 700 }}>
+								(Books + Stationery)
+								<br />
+								{`Grand Total:  ₹ ${booksPrice[0] + stationeryPrice}`}
+								{booksPrice[0] !== booksPrice[1] ? ` to ₹ ${booksPrice[1] + stationeryPrice}` : null}
+								<br />
 							</Type>
-						)}
-						<Button
-							onClick={() => {
-								uploadOrder().on("state_changed", (snapshot) => {
-									console.log(snapshot.bytesTransferred);
-								});
-							}}>
-							CONTINUE
-						</Button>
-					</PriceSection>
-				</FormSection>
+							{isPackSelected && (
+								<Type style={{ textAlign: "-webkit-right", fontWeight: 200 }}>
+									Effective Grand Total <br /> ₹ {booksPrice[0] + stationeryPrice} - ₹ 1000
+									<br /> ₹{booksPrice[0] + stationeryPrice - 1000}
+								</Type>
+							)}
+							<Button
+								type='submit'
+								disabled={isLoading}
+								onClick={() => {
+									uploadOrder().on("state_changed", (snapshot) => {
+										console.log(snapshot.bytesTransferred);
+									});
+								}}>
+								{!isLoading ? "CONTINUE" : "LOADING..."}
+							</Button>
+						</PriceSection>
+					</FormSection>
+				</form>
 			</BookFormStyle>
 		</Flex>
 	);

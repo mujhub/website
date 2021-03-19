@@ -1,15 +1,15 @@
 import React from "react";
-import { Type, H6 } from "../../styles/Shared/StyledTypes";
-import { Item, ItemContainer, PriceSection } from "../../styles/components/BookStyles";
-import { Divider } from "../../styles/components/HomeStyles";
+import { Type, H4, H6 } from "../../styles/Shared/StyledTypes";
+import { COLOURS, GRAY } from "../../constants/colours/colours";
+import { Item, ItemContainer } from "../../styles/components/BookStyles";
 
-const StationerySelector = ({ stationeryData, handleStationerySelect, stationeryPrice }) => {
+const StationerySelector = ({ stationeryData, handleStationerySelect }) => {
 	return (
 		<div>
 			<H6>Stationery</H6>
 			<Type>
-				Choose the stationery items based on your requirements. The pre-selected options are a pack curated by the stationery provider for the physics
-				cycle labs. Feel free to de-select items that you do not need.
+				Choose the stationery items based on your requirements. The pre-selected options are a pack curated by the stationery provider for the labs.
+				Feel free to de-select items that you do not need.
 			</Type>
 			<ItemContainer>
 				{stationeryData.map((item, i) => (
@@ -20,23 +20,19 @@ const StationerySelector = ({ stationeryData, handleStationerySelect, stationery
 							handleStationerySelect(i);
 						}}>
 						<p>
-							Item: {item.name} <br /> Quantity: x {item.quantity}
+							{item.name} <br /> x {item.quantity}
 						</p>
 						{typeof item.price === "object" ? (
 							<>
-								<p style={{ textDecoration: "line-through", marginRight: 10 }}>MRP: ₹ {item.price[0]}</p>
-								<p>Price: ₹ {item.price[1]}</p>
+								<p style={{ textDecoration: "line-through", marginRight: 10 }}>Rs.{item.price[0]}</p>
+								<p>Rs.{item.price[1]}</p>
 							</>
 						) : (
-							<p>₹ {item.price}</p>
+							<p>Rs.{item.price}</p>
 						)}
 					</Item>
 				))}
 			</ItemContainer>
-			<Divider />
-			<PriceSection>
-				<Type style={{ textAlign: "-webkit-right" }}>{`Total Stationery Price: ₹ ${stationeryPrice}`}</Type>
-			</PriceSection>
 		</div>
 	);
 };
