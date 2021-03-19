@@ -118,3 +118,94 @@ export const PriceSection = styled.div`
     font-weight: 500;
   }
 `;
+
+export const ModalContainer = styled.div`
+  display: ${(props) => (props.show ? "block" : "none")};
+  background-color: ${(props) => props.theme.BG};
+  margin: 0;
+  z-index: 100;
+  position: fixed;
+  top: 0;
+  left: 0;
+  /* transform: translate(-50%, -50%); */
+  width: 100vw;
+  min-height: 100vh;
+  overflow: hidden;
+  /* pointer-events: none; */
+
+  .content {
+    max-height: calc(100vh - 8rem);
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 1rem;
+    position: fixed;
+    width: 30%;
+    /* max-height: calc(100vh - 2rem); */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: ${(props) => props.theme.BG2};
+    @media (max-width: 768px) {
+      width: calc(100vw - 4rem);
+      max-height: calc(100vh - 4rem);
+    }
+
+    h6 {
+      margin-bottom: 1rem;
+    }
+    .logo {
+      & > div {
+        flex-grow: 1;
+      }
+
+      img {
+        width: 50px;
+        height: 50px;
+        border-radius: 4px;
+        margin-right: 1rem;
+      }
+      button {
+        color: white;
+        /* font-size: 1rem; */
+        padding: 0.5rem;
+        margin-left: 1rem;
+        display: flex;
+        align-items: center;
+        border-radius: 4px;
+        border: 0;
+        font-weight: 600;
+        background-color: ${(props) => props.theme.BG2};
+        color: ${(props) => props.theme.PRIMARY};
+      }
+
+      display: flex;
+      /* flex-wra?p: wrap; */
+      align-items: center;
+      margin-bottom: 1.5rem;
+    }
+    .details {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      /* margin-top: 0.5rem; */
+      /* p {
+        font-weight: 600;
+        margin: 0.5rem 0;
+      } */
+    }
+    .products {
+      margin: 0.5rem 0;
+      line-height: 1.5;
+      div {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        justify-content: space-between;
+      }
+      td {
+        padding: 0;
+      }
+    }
+  }
+`;
