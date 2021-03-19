@@ -19,8 +19,9 @@ const BooksSelector = ({
     <>
       <H6>Books</H6>
       <Type>
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry.
+        Choose from a variety of books curated as a pack by the book provider
+        based on your study cycle. Once you're done with using the books for the
+        semester, return the books and receive a partial refund as stated below.
       </Type>
       <ItemContainer isPackSelected={isPackSelected}>
         {booksData.map(

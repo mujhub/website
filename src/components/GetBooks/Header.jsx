@@ -6,17 +6,20 @@ import { Type, H4, H6 } from "../../styles/Shared/StyledTypes";
 const Header = () => {
   return (
     <HeaderStyle>
-      <H4>Heading</H4>
+      <H4>Books and Stationery Rentals</H4>
       <Type>
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry. Lorem Ipsum has been the industry's standard dummy text ever
-        since the 1500s, when an unknown printer took a galley of type and
-        scrambled it to make a type specimen book.
+        MUJ HUB has tied up with the local book and stationery dealers giving
+        you access to all their items even while you're stuck in the hostel
+        amidst the COVID-19 restrictions.
       </Type>
-      <H6>Sub Heading</H6>
+      <H6>Rental Books and Stationery Delivered To The Hostel Gate!</H6>
       <Type>
-        It has survived not only five centuries, but also the leap into
-        electronic typesetting, remaining essentially unchanged.
+        The books sold individually or in packs can be availed through the form
+        given below. After confirming your order through MUJ HUB, the local
+        dealer, "Kumawat Stationery" will contact you regarding additional
+        prices (if any) and the collection of the books/stationery items from
+        the hostel gate. The payment is to be made to the delivery personnel on
+        collection of the order.
       </Type>
     </HeaderStyle>
   );

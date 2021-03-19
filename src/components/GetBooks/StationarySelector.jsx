@@ -8,8 +8,9 @@ const StationarySelector = ({ stationaryData, handleStationarySelect }) => {
     <div>
       <H6>Stationary</H6>
       <Type>
-        Lorem Ipsum is simply dummy text of the printing and typesetting
-        industry.
+        Choose the stationery items based on your requirements. The pre-selected
+        options are a pack curated by the stationery provider for the labs. Feel
+        free to de-select items that you do not need.
       </Type>
       <ItemContainer>
         {stationaryData.map((item, i) => (
