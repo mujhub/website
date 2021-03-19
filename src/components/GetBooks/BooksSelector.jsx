@@ -23,8 +23,8 @@ const BooksSelector = ({ booksData, handleBookSelect, isPackSelected, additional
 								onClick={() => {
 									handleBookSelect(i);
 								}}>
-								<p>Name: {data.name}</p>
-								<p>Author: {data.description}</p>
+								<p style={{ fontWeight: 500 }}>{data.name}</p>
+								<p>{data.description}</p>
 
 								{!isPackSelected && (
 									<p>

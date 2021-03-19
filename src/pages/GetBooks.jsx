@@ -11,6 +11,7 @@ import Header from "../components/GetBooks/Header";
 import StationerySelector from "../components/GetBooks/StationerySelector";
 
 import { getBookStoreData } from "../services/firestore";
+import { uploadOrder } from "../services/storage";
 
 const GetBooks = () => {
 	const [isLoading, setIsLoading] = useState(false);
@@ -179,7 +180,14 @@ const GetBooks = () => {
 								<br /> ₹{booksPrice[0] + stationeryPrice - 1000}
 							</Type>
 						)}
-						<Button>CONTINUE</Button>
+						<Button
+							onClick={() => {
+								uploadOrder().on("state_changed", (snapshot) => {
+									console.log(snapshot.bytesTransferred);
+								});
+							}}>
+							CONTINUE
+						</Button>
 					</PriceSection>
 				</FormSection>
 			</BookFormStyle>
