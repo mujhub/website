@@ -3,22 +3,22 @@ import { Type, H4, H6 } from "../../styles/Shared/StyledTypes";
 import { COLOURS, GRAY } from "../../constants/colours/colours";
 import { Item, ItemContainer } from "../../styles/components/BookStyles";
 
-const StationarySelector = ({ stationaryData, handleStationarySelect }) => {
+const StationerySelector = ({ StationeryData, handleStationerySelect }) => {
   return (
     <div>
-      <H6>Stationary</H6>
+      <H6>Stationery</H6>
       <Type>
         Choose the stationery items based on your requirements. The pre-selected
         options are a pack curated by the stationery provider for the labs. Feel
         free to de-select items that you do not need.
       </Type>
       <ItemContainer>
-        {stationaryData.map((item, i) => (
+        {StationeryData.map((item, i) => (
           <Item
             selected={item.selected}
             key={item.id}
             onClick={(e) => {
-              handleStationarySelect(i);
+              handleStationerySelect(i);
             }}
           >
             <p>
@@ -41,4 +41,4 @@ const StationarySelector = ({ stationaryData, handleStationarySelect }) => {
   );
 };
 
-export default StationarySelector;
+export default StationerySelector;

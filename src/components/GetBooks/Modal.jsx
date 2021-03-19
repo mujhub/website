@@ -14,11 +14,11 @@ const Modal = ({ show, hide, data }) => {
     phone,
     booksData,
     additionalBooks,
-    stationaryData,
+    StationeryData,
     booksPrice,
-    stationaryPrice,
+    StationeryPrice,
   } = data;
-  const total = Number(booksPrice) + Number(stationaryPrice);
+  const total = Number(booksPrice) + Number(StationeryPrice);
   return (
     <ModalContainer show={show}>
       <div className="content">
@@ -70,14 +70,14 @@ const Modal = ({ show, hide, data }) => {
 
         <div className="products">
           <div>
-            <Type style={{ fontWeight: 600 }}>Stationary</Type>
+            <Type style={{ fontWeight: 600 }}>Stationery</Type>
             <Type style={{ fontWeight: 600 }}>
-              Total Stationary Price: ₹ {stationaryPrice}
+              Total Stationery Price: ₹ {StationeryPrice}
             </Type>
           </div>
-          {stationaryData.map((item, i) =>
+          {StationeryData.map((item, i) =>
             item.selected
-              ? i < stationaryData.length - 1
+              ? i < StationeryData.length - 1
                 ? `${item.name}, `
                 : `${item.name}`
               : null

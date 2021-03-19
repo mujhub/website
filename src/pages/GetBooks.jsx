@@ -13,7 +13,7 @@ import {
 
 import BooksSelector from "../components/GetBooks/BooksSelector";
 import Header from "../components/GetBooks/Header";
-import StationarySelector from "../components/GetBooks/StationarySelector";
+import StationerySelector from "../components/GetBooks/StationerySelector";
 import Modal from "../components/GetBooks/Modal";
 
 const dummy_physicsData = [
@@ -148,7 +148,7 @@ const dummy_chemData = [
   },
 ];
 
-const dummy_stationaryData = [
+const dummy_StationeryData = [
   {
     id: "drafter",
     name: "Omega Mini Drafter",
@@ -195,13 +195,13 @@ const GetBooks = () => {
   const [currentCycle, setCurrentCycle] = useState("p");
   const [isPackSelected, setIsPackSelected] = useState(true);
   const [booksPrice, setBooksPrice] = useState(0);
-  const [stationaryPrice, setStationaryPrice] = useState(0);
+  const [StationeryPrice, setStationeryPrice] = useState(0);
 
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
   const [booksData, setBooksData] = useState(dummy_physicsData);
   const [additionalBooks, setAdditionalBooks] = useState("");
-  const [stationaryData, setStationaryData] = useState(dummy_stationaryData);
+  const [StationeryData, setStationeryData] = useState(dummy_StationeryData);
 
   // const [selectedBooks, setselectedBooks] = useState(initialState)
   const [isLoading, setIsLoading] = useState(false);
@@ -230,10 +230,10 @@ const GetBooks = () => {
   const handleAdditionalBooksChange = (e) => {
     setAdditionalBooks(e.target.value);
   };
-  const handleStationarySelect = (i) => {
-    let data = stationaryData;
+  const handleStationerySelect = (i) => {
+    let data = StationeryData;
     data[i].selected = !data[i].selected;
-    setStationaryData([...data]);
+    setStationeryData([...data]);
   };
 
   useEffect(() => {
@@ -264,13 +264,13 @@ const GetBooks = () => {
 
   useEffect(() => {
     let price = 0;
-    stationaryData.forEach((item) => {
+    StationeryData.forEach((item) => {
       if (item.selected)
         if (typeof item.price === "object") price += item.price[1];
         else price += item.price;
     });
-    setStationaryPrice(price);
-  }, [stationaryData]);
+    setStationeryPrice(price);
+  }, [StationeryData]);
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -282,9 +282,9 @@ const GetBooks = () => {
       phone,
       booksData,
       additionalBooks,
-      stationaryData,
+      StationeryData,
       booksPrice,
-      stationaryPrice,
+      StationeryPrice,
     };
     setShowModal(true);
     setCurrentOrder(final);
@@ -366,21 +366,21 @@ const GetBooks = () => {
           </FormSection>
           <Divider />
           <FormSection>
-            <StationarySelector
-              stationaryData={stationaryData}
-              handleStationarySelect={handleStationarySelect}
+            <StationerySelector
+              StationeryData={StationeryData}
+              handleStationerySelect={handleStationerySelect}
             />
 
             <PriceSection>
-              <Type>{`Total Stationary Price: ₹ ${stationaryPrice}`}</Type>
+              <Type>{`Total Stationery Price: ₹ ${StationeryPrice}`}</Type>
             </PriceSection>
           </FormSection>
 
           <Divider />
           <FormSection>
             <PriceSection final>
-              <Type>{`Grand Total (Books + Stationary):  ₹ ${
-                stationaryPrice + booksPrice
+              <Type>{`Grand Total (Books + Stationery):  ₹ ${
+                StationeryPrice + booksPrice
               }`}</Type>
               <Button type="submit" disabled={isLoading}>
                 {!isLoading ? "CONTINUE" : "LOADING..."}
