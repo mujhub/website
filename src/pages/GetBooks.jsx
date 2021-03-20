@@ -15,6 +15,7 @@ import Modal from "../components/GetBooks/Modal";
 import { getBookStoreData } from "../services/firestore";
 import { uploadOrder } from "../services/storage";
 import Invoice from "../components/GetBooks/Invoice";
+import { PRIMARY } from "../constants/colours/colours";
 
 const GetBooks = () => {
 	const [isLoading, setIsLoading] = useState(false);
@@ -34,6 +35,9 @@ const GetBooks = () => {
 	const [showModal, setShowModal] = useState(false);
 	const [currentOrder, setCurrentOrder] = useState({});
 	const [submitted, setSubmitted] = useState(false);
+	const [orderPlaced, setOrderPlaced] = useState(false);
+	const [downloadUrl, setDownloadUrl] = useState("");
+	const [error, setError] = useState(false);
 
 	const handleCycleChange = (e) => {
 		setCurrentCycle(e.target.value);
@@ -64,6 +68,10 @@ const GetBooks = () => {
 
 	const handleFormSubmit = (e) => {
 		e.preventDefault();
+		if (!name || !phone) {
+			alert("Please enter the required details to continue.");
+			return;
+		}
 
 		setIsLoading(false);
 
@@ -99,6 +107,44 @@ const GetBooks = () => {
 			setIsLoading(false);
 		}
 		setCurrentCycle("p");
+	};
+
+	const placeOrder = async () => {
+		// const body = document.querySelector("body");
+		// html2canvas(body).then(async (canvas) => {
+		// 	try {
+		// 		const url = await uploadOrder({ name, b64string: canvas.toDataURL("image/jpeg", 0.05) });
+		// 		console.log(url);
+		// 		if (url) {
+		// 			setOrderPlaced(true);
+		// 			setDownloadUrl(url);
+		// 		} else {
+		// 			setOrderPlaced(false);
+		// 			setError(true);
+		// 		}
+		// 	} catch (error) {
+		// 		console.log(`error`, error);
+		// 		setOrderPlaced(false);
+		// 		setError(true);
+		// 	}
+		// });
+		const body = document.querySelector("body");
+		const canvas = await html2canvas(body);
+		try {
+			const url = await uploadOrder({ name, b64string: canvas.toDataURL("image/jpeg", 0.05) });
+			console.log(url);
+			if (url) {
+				setOrderPlaced(true);
+				setDownloadUrl(url);
+			} else {
+				setOrderPlaced(false);
+				setError(true);
+			}
+		} catch (error) {
+			console.log(`error`, error);
+			setOrderPlaced(false);
+			setError(true);
+		}
 	};
 
 	useEffect(() => {
@@ -145,15 +191,6 @@ const GetBooks = () => {
 		});
 		setStationeryPrice(price);
 	}, [stationeryData]);
-
-	const placeOrder = () => {
-		const body = document.querySelector("body");
-		html2canvas(body).then((canvas) => {
-			// let croppedCanvas = document.createElement("canvas");
-			// let croppedCanvasContext = croppedCanvas.getContext("2d");
-			console.log(canvas.toDataURL("image/jpeg", 0.05));
-		});
-	};
 
 	return (
 		<Flex column p='1rem 10rem'>
@@ -234,7 +271,19 @@ const GetBooks = () => {
 					</BookFormStyle>
 				</>
 			)}
-			<div id='invoice'>{submitted && <Invoice data={currentOrder} placeOrder={placeOrder} />}</div>
+			<div id='invoice'>
+				{submitted && !orderPlaced && <Invoice data={currentOrder} placeOrder={placeOrder} error={error} orderPlaced={orderPlaced} />}
+			</div>
+			{orderPlaced && !error && (
+				<div>
+					<Type>Order Placed Successfully! The dealer will contact you soon!</Type>
+					<br />
+					<a href={downloadUrl} target='_BLANK'>
+						<Type style={{ color: PRIMARY }}>Download Receipt</Type>
+					</a>
+				</div>
+			)}
+			{!orderPlaced && error && <Type>Oops! An error ocurred. Please try again after some time.</Type>}
 		</Flex>
 	);
 };
