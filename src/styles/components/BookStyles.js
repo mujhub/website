@@ -80,9 +80,22 @@ export const ItemContainer = styled.div`
   padding: 0.25rem;
   grid-template-columns: auto auto auto;
   border-radius: 4px;
-  border: 2px solid;
+  border: 2px dashed;
+  position: relative;
   border-color: ${(props) =>
     props.isPackSelected ? props.theme.PRIMARY : "#00000000"};
+
+  &::before {
+    content: "COMPLETE PACK SELECTED";
+    display: ${(props) => (props.isPackSelected ? "block" : "none")};
+    color: ${(props) =>
+      props.isPackSelected ? props.theme.PRIMARY : props.theme.TEXT};
+    position: absolute;
+    font-weight: 600;
+    top: -20px;
+    left: -5px;
+    font-size: 12px;
+  }
 
   @media (max-width: 768px) {
     // padding: 1rem;
@@ -96,51 +109,56 @@ export const ItemContainer = styled.div`
 
 export const Item = styled.div`
   cursor: pointer;
-  width: calc(100vw / 3 - 8rem - 0.5rem);
-  min-height: calc(120px - 1rem);
+  width: calc(100vw / 3 - 8rem - 1.5rem);
+  height: calc(170px + 1rem);
+  min-height: 120px;
   display: flex;
   flex-direction: ${(props) => (props.isStationery ? "column" : "row")};
   border-radius: 4px;
   margin: 0.5rem;
   height: fit-content;
-
+  padding: 0.5rem;
   background-color: ${(props) =>
     props.selected === true ? props.theme.PRIMARY : ""}30;
   background-color: ${(props) =>
     props.selected === false ? props.theme.BG2 : ""};
-  /* box-shadow: 0px 0px 20px
-    ${(props) =>
-    props.selected ? props.theme.GREEN1 : "rgba(0, 0, 0, 0.1)"}50; */
 
   & > div {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
   }
-  .selectIndicator {
-    display: ${(props) => (props.selected ? "block" : "none")};
-  }
 
   p {
-    margin: 0.5rem;
+    text-transform: capitalize;
+    margin: 0.25rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    :first-child {
+      padding-bottom: 0.25rem;
+      border-bottom: 1px solid ${(props) => props.theme.TEXT}70;
+    }
   }
 
   img {
-    padding: 0.5rem;
+    /* padding: 1rem; */
+    border-radius: 2px;
     width: auto;
-    height: 120px;
+    height: 180px;
+    @media (max-width: 768px) {
+      height: 170px;
+    }
   }
 
   @media (max-width: 768px) {
-    width: calc(100vw - 4rem);
+    width: calc(100vw - 5rem);
     margin: 0.5rem;
   }
 `;
 
 export const PriceSection = styled.div`
-  /* text-align: center; */
-  /* background-color: ${(props) =>
-    props.final ? props.theme.BG2 : props.theme.BG}; */
   padding: ${(props) => (props.final ? "1rem" : "0.5rem")};
   border-radius: 4px;
   p {
