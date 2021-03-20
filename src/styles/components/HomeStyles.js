@@ -198,3 +198,9 @@ export const FormStyles = styled.section`
     margin-right: 0.5rem;
   }
 `;
+
+// banner styles
+
+export const BannerStyles = styled.div`
+  background-color: ${(props) => props.theme.ORANGE}40;
+`;
