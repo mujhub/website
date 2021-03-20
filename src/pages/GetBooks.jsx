@@ -38,6 +38,7 @@ const GetBooks = () => {
 	const [orderPlaced, setOrderPlaced] = useState(false);
 	const [downloadUrl, setDownloadUrl] = useState("");
 	const [error, setError] = useState(false);
+	const [isOrdering, setIsOrdering] = useState(false);
 
 	const handleCycleChange = (e) => {
 		setCurrentCycle(e.target.value);
@@ -110,25 +111,8 @@ const GetBooks = () => {
 	};
 
 	const placeOrder = async () => {
-		// const body = document.querySelector("body");
-		// html2canvas(body).then(async (canvas) => {
-		// 	try {
-		// 		const url = await uploadOrder({ name, b64string: canvas.toDataURL("image/jpeg", 0.05) });
-		// 		console.log(url);
-		// 		if (url) {
-		// 			setOrderPlaced(true);
-		// 			setDownloadUrl(url);
-		// 		} else {
-		// 			setOrderPlaced(false);
-		// 			setError(true);
-		// 		}
-		// 	} catch (error) {
-		// 		console.log(`error`, error);
-		// 		setOrderPlaced(false);
-		// 		setError(true);
-		// 	}
-		// });
 		const body = document.querySelector("body");
+		setIsOrdering(true);
 		const canvas = await html2canvas(body);
 		try {
 			const url = await uploadOrder({ name, b64string: canvas.toDataURL("image/jpeg", 0.05) });
@@ -144,6 +128,8 @@ const GetBooks = () => {
 			console.log(`error`, error);
 			setOrderPlaced(false);
 			setError(true);
+		} finally {
+			setIsOrdering(false);
 		}
 	};
 
@@ -272,7 +258,9 @@ const GetBooks = () => {
 				</>
 			)}
 			<div id='invoice'>
-				{submitted && !orderPlaced && <Invoice data={currentOrder} placeOrder={placeOrder} error={error} orderPlaced={orderPlaced} />}
+				{submitted && !orderPlaced && (
+					<Invoice data={currentOrder} placeOrder={placeOrder} error={error} orderPlaced={orderPlaced} isOrdering={isOrdering} />
+				)}
 			</div>
 			{orderPlaced && !error && (
 				<div>

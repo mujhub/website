@@ -6,7 +6,7 @@ import { Type, H6 } from "../../styles/Shared/StyledTypes";
 import LOGO from "../../images/logoSq256.png";
 import { COLOURS } from "../../constants/colours/colours";
 
-const Invoice = ({ data, placeOrder, orderPlaced, error }) => {
+const Invoice = ({ data, placeOrder, orderPlaced, error, isOrdering }) => {
 	const { name, phone, booksData, additionalBooks, stationeryData, booksPrice, stationeryPrice } = data;
 	const total_min = Number(booksPrice[0]) + Number(stationeryPrice);
 	const total_max = Number(booksPrice[1]) + Number(stationeryPrice);
@@ -67,8 +67,8 @@ const Invoice = ({ data, placeOrder, orderPlaced, error }) => {
 				<Divider />
 				{!error && !orderPlaced && (
 					<div className='logo' style={{ display: "flex", justifyContent: "center", margin: 20 }}>
-						<button style={{ backgroundColor: COLOURS.GREEN1, color: "white", padding: 15 }} onClick={placeOrder}>
-							Place Order
+						<button disabled={isOrdering} style={{ backgroundColor: COLOURS.GREEN1, color: "white", padding: 15 }} onClick={placeOrder}>
+							{isOrdering ? "Loading..." : "Place Order"}
 						</button>
 					</div>
 				)}
