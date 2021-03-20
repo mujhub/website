@@ -6,7 +6,7 @@ import { Type, H6 } from "../../styles/Shared/StyledTypes";
 import LOGO from "../../images/logoSq256.png";
 import { COLOURS } from "../../constants/colours/colours";
 
-const Invoice = ({ data, placeOrder }) => {
+const Invoice = ({ data, placeOrder, orderPlaced, error }) => {
 	const { name, phone, booksData, additionalBooks, stationeryData, booksPrice, stationeryPrice } = data;
 	const total_min = Number(booksPrice[0]) + Number(stationeryPrice);
 	const total_max = Number(booksPrice[1]) + Number(stationeryPrice);
@@ -65,11 +65,13 @@ const Invoice = ({ data, placeOrder }) => {
 				<Divider />
 				<Type style={{ fontWeight: 600 }}>Total Price: ₹ {total_min === total_max ? total_max : `${total_min} to ₹ ${total_max}`}</Type>
 				<Divider />
-				<div className='logo' style={{ display: "flex", justifyContent: "center", margin: 20 }}>
-					<button style={{ backgroundColor: COLOURS.GREEN1, color: "white", padding: 15 }} onClick={placeOrder}>
-						Place Order
-					</button>
-				</div>
+				{!error && !orderPlaced && (
+					<div className='logo' style={{ display: "flex", justifyContent: "center", margin: 20 }}>
+						<button style={{ backgroundColor: COLOURS.GREEN1, color: "white", padding: 15 }} onClick={placeOrder}>
+							Place Order
+						</button>
+					</div>
+				)}
 			</div>
 		</InvoiceContainer>
 	);
