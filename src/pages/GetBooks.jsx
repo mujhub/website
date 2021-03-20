@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import html2canvas from "html2canvas";
 
 import { Container as Flex } from "../styles/Shared/Container";
 import { Type, H6 } from "../styles/Shared/StyledTypes";
@@ -13,6 +14,7 @@ import Modal from "../components/GetBooks/Modal";
 
 import { getBookStoreData } from "../services/firestore";
 import { uploadOrder } from "../services/storage";
+import Invoice from "../components/GetBooks/Invoice";
 
 const GetBooks = () => {
 	const [isLoading, setIsLoading] = useState(false);
@@ -76,7 +78,6 @@ const GetBooks = () => {
 		};
 		setShowModal(true);
 		setCurrentOrder(final);
-		// console.log(showModal);
 		setSubmitted(true);
 		return final;
 	};
@@ -145,84 +146,95 @@ const GetBooks = () => {
 		setStationeryPrice(price);
 	}, [stationeryData]);
 
+	const placeOrder = () => {
+		const body = document.querySelector("body");
+		html2canvas(body).then((canvas) => {
+			// let croppedCanvas = document.createElement("canvas");
+			// let croppedCanvasContext = croppedCanvas.getContext("2d");
+			console.log(canvas.toDataURL("image/jpeg", 0.05));
+		});
+	};
+
 	return (
 		<Flex column p='1rem 10rem'>
-			{submitted === true ? <Modal show={showModal} hide={setShowModal} data={currentOrder} /> : null}
+			{submitted === true ? <Modal show={showModal} hide={setShowModal} data={currentOrder} setSubmitted={setSubmitted} /> : null}
 
-			<Header />
-			<Divider />
-			<BookFormStyle>
-				<form onSubmit={handleFormSubmit}>
-					<FormSection>
-						<H6>Current cycle</H6>
-						<InputWrapper>
-							<label>Select your cycle</label>
-							<select id='cycle' onChange={handleCycleChange}>
-								<optgroup label='First Year'>
-									<option value='p'>Physics</option>
-									<option value='c'>Chemistry</option>
-								</optgroup>
-							</select>
-						</InputWrapper>
-					</FormSection>
-					<FormSection>
-						<H6>Contact Details</H6>
-						<InputWrapper>
-							<label>Full Name</label>
-							<input style={{ fontSize: "larger" }} placeholder='Full Name' name='name' onChange={handleNameChange} value={name} />
-						</InputWrapper>
-						<InputWrapper>
-							<label>Phone Number</label>
-							<input style={{ fontSize: "larger" }} placeholder='Phone Number' name='phone' onChange={handlePhoneChange} value={phone} />
-						</InputWrapper>
-					</FormSection>
+			{!submitted && (
+				<>
+					<Header />
 					<Divider />
+					<BookFormStyle>
+						<form onSubmit={handleFormSubmit}>
+							<FormSection>
+								<H6>Current cycle</H6>
+								<InputWrapper>
+									<label>Select your cycle</label>
+									<select id='cycle' onChange={handleCycleChange}>
+										<optgroup label='First Year'>
+											<option value='p'>Physics</option>
+											<option value='c'>Chemistry</option>
+										</optgroup>
+									</select>
+								</InputWrapper>
+							</FormSection>
+							<FormSection>
+								<H6>Contact Details</H6>
+								<InputWrapper>
+									<label>Full Name</label>
+									<input style={{ fontSize: "larger" }} placeholder='Full Name' name='name' onChange={handleNameChange} value={name} />
+								</InputWrapper>
+								<InputWrapper>
+									<label>Phone Number</label>
+									<input style={{ fontSize: "larger" }} placeholder='Phone Number' name='phone' onChange={handlePhoneChange} value={phone} />
+								</InputWrapper>
+							</FormSection>
+							<Divider />
 
-					<FormSection>
-						<BooksSelector
-							booksData={booksData}
-							handleBookSelect={handleBookSelect}
-							isPackSelected={isPackSelected}
-							additionalBooks={additionalBooks}
-							handleAdditionalBooksChange={handleAdditionalBooksChange}
-							booksPrice={booksPrice}
-						/>
-					</FormSection>
-					<Divider />
-					<FormSection>
-						<StationerySelector stationeryData={stationeryData} handleStationerySelect={handleStationerySelect} stationeryPrice={stationeryPrice} />
-					</FormSection>
+							<FormSection>
+								<BooksSelector
+									booksData={booksData}
+									handleBookSelect={handleBookSelect}
+									isPackSelected={isPackSelected}
+									additionalBooks={additionalBooks}
+									handleAdditionalBooksChange={handleAdditionalBooksChange}
+									booksPrice={booksPrice}
+								/>
+							</FormSection>
+							<Divider />
+							<FormSection>
+								<StationerySelector
+									stationeryData={stationeryData}
+									handleStationerySelect={handleStationerySelect}
+									stationeryPrice={stationeryPrice}
+								/>
+							</FormSection>
 
-					<Divider />
-					<FormSection>
-						<PriceSection final>
-							<Type style={{ textAlign: "-webkit-right", fontWeight: 700 }}>
-								(Books + Stationery)
-								<br />
-								{`Grand Total:  ₹ ${booksPrice[0] + stationeryPrice}`}
-								{booksPrice[0] !== booksPrice[1] ? ` to ₹ ${booksPrice[1] + stationeryPrice}` : null}
-								<br />
-							</Type>
-							{isPackSelected && (
-								<Type style={{ textAlign: "-webkit-right", fontWeight: 200 }}>
-									Effective Grand Total <br /> ₹ {booksPrice[0] + stationeryPrice} - ₹ 1000
-									<br /> ₹{booksPrice[0] + stationeryPrice - 1000}
-								</Type>
-							)}
-							<Button
-								type='submit'
-								disabled={isLoading}
-								onClick={() => {
-									uploadOrder().on("state_changed", (snapshot) => {
-										console.log(snapshot.bytesTransferred);
-									});
-								}}>
-								{!isLoading ? "CONTINUE" : "LOADING..."}
-							</Button>
-						</PriceSection>
-					</FormSection>
-				</form>
-			</BookFormStyle>
+							<Divider />
+							<FormSection>
+								<PriceSection final>
+									<Type style={{ textAlign: "-webkit-right", fontWeight: 700 }}>
+										(Books + Stationery)
+										<br />
+										{`Grand Total:  ₹ ${booksPrice[0] + stationeryPrice}`}
+										{booksPrice[0] !== booksPrice[1] ? ` to ₹ ${booksPrice[1] + stationeryPrice}` : null}
+										<br />
+									</Type>
+									{isPackSelected && (
+										<Type style={{ textAlign: "-webkit-right", fontWeight: 200 }}>
+											Effective Grand Total <br /> ₹ {booksPrice[0] + stationeryPrice} - ₹ 1000
+											<br /> ₹{booksPrice[0] + stationeryPrice - 1000}
+										</Type>
+									)}
+									<Button type='submit' disabled={isLoading}>
+										{!isLoading ? "CONTINUE" : "LOADING..."}
+									</Button>
+								</PriceSection>
+							</FormSection>
+						</form>
+					</BookFormStyle>
+				</>
+			)}
+			<div id='invoice'>{submitted && <Invoice data={currentOrder} placeOrder={placeOrder} />}</div>
 		</Flex>
 	);
 };

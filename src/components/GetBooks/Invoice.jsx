@@ -1,36 +1,23 @@
 import React from "react";
-import { ModalContainer } from "../../styles/components/BookStyles";
-import { Type, H6 } from "../../styles/Shared/StyledTypes";
 import { Divider } from "../../styles/components/HomeStyles";
+import { InvoiceContainer } from "../../styles/components/BookStyles";
+import { Type, H6 } from "../../styles/Shared/StyledTypes";
 
-import { IoClose } from "react-icons/io5";
-import { FiDownload } from "react-icons/fi";
 import LOGO from "../../images/logoSq256.png";
-import { Button } from "../../styles/Shared/Button";
 import { COLOURS } from "../../constants/colours/colours";
 
-const Modal = ({ show, hide, data, setSubmitted }) => {
+const Invoice = ({ data, placeOrder }) => {
 	const { name, phone, booksData, additionalBooks, stationeryData, booksPrice, stationeryPrice } = data;
 	const total_min = Number(booksPrice[0]) + Number(stationeryPrice);
 	const total_max = Number(booksPrice[1]) + Number(stationeryPrice);
 
 	return (
-		<ModalContainer show={show}>
+		<InvoiceContainer>
 			<div className='content'>
-				{/* <div className='logo'>
-					<div>
-						<img src={LOGO} alt='MUJ HUB' />
-					</div>
-					<button>
-						<FiDownload style={{ marginRight: "0.5rem" }} size='18px' />
-						DOWNLOAD
-					</button>
-					<button style={{ background: "#EB5757", color: "white" }} onClick={() => hide(false)}>
-						<IoClose size='18px' />
-					</button>
-				</div> */}
-
-				<H6 style={{ textDecoration: "underline" }}>Summary</H6>
+				<div className='logo'>
+					<img src={LOGO} alt='MUJ HUB' />
+				</div>
+				<H6>Books and Stationery Rentals</H6>
 				<Divider />
 				<div className='details'>
 					<Type>Name: {name} </Type>
@@ -58,32 +45,34 @@ const Modal = ({ show, hide, data, setSubmitted }) => {
 					</table>
 				</div>
 
-				<div className='products'>
+				<div className='products' style={{ marginBottom: 30 }}>
 					<div>
 						<Type style={{ fontWeight: 600 }}>Stationery</Type>
 						<Type style={{ fontWeight: 600 }}>Total Stationery Price: ₹ {stationeryPrice}</Type>
 					</div>
-					{stationeryData.map((item, i) => (item.selected ? (i < stationeryData.length - 1 ? `${item.name}, ` : `${item.name}`) : null))}
+					<table>
+						<tbody>
+							{stationeryData.map((item, i) =>
+								item.selected ? (
+									<tr key={i}>
+										<td>• {item.name}</td>
+									</tr>
+								) : null
+							)}
+						</tbody>
+					</table>
 				</div>
 				<Divider />
 				<Type style={{ fontWeight: 600 }}>Total Price: ₹ {total_min === total_max ? total_max : `${total_min} to ₹ ${total_max}`}</Type>
 				<Divider />
-				<div className='logo'>
-					<div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", marginTop: 30 }}>
-						<button
-							onClick={() => {
-								setSubmitted(false);
-							}}>
-							EDIT
-						</button>
-						<button style={{ background: COLOURS.GREEN1, color: "white" }} onClick={() => hide(false)}>
-							CONTINUE
-						</button>
-					</div>
+				<div className='logo' style={{ display: "flex", justifyContent: "center", margin: 20 }}>
+					<button style={{ backgroundColor: COLOURS.GREEN1, color: "white", padding: 15 }} onClick={placeOrder}>
+						Place Order
+					</button>
 				</div>
 			</div>
-		</ModalContainer>
+		</InvoiceContainer>
 	);
 };
 
-export default Modal;
+export default Invoice;
