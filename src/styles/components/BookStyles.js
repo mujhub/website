@@ -105,7 +105,9 @@ export const Item = styled.div`
   height: fit-content;
 
   background-color: ${(props) =>
-    props.selected ? props.theme.PRIMARY : props.theme.BG2}30;
+    props.selected === true ? props.theme.PRIMARY : ""}30;
+  background-color: ${(props) =>
+    props.selected === false ? props.theme.BG2 : ""};
   /* box-shadow: 0px 0px 20px
     ${(props) =>
     props.selected ? props.theme.GREEN1 : "rgba(0, 0, 0, 0.1)"}50; */
