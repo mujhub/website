@@ -218,11 +218,11 @@ const GetBooks = () => {
 								<H6>Contact Details</H6>
 								<InputWrapper>
 									<label>Full Name</label>
-									<input style={{ fontSize: "larger" }} placeholder='Full Name' name='name' onChange={handleNameChange} value={name} />
+									<input placeholder='Full Name' name='name' onChange={handleNameChange} value={name} />
 								</InputWrapper>
 								<InputWrapper>
 									<label>Phone Number</label>
-									<input style={{ fontSize: "larger" }} placeholder='Phone Number' name='phone' onChange={handlePhoneChange} value={phone} />
+									<input placeholder='Phone Number' name='phone' onChange={handlePhoneChange} value={phone} />
 								</InputWrapper>
 							</FormSection>
 							<Divider />
@@ -249,7 +249,7 @@ const GetBooks = () => {
 							<Divider />
 							<FormSection>
 								<PriceSection final>
-									<Type style={{ textAlign: "-webkit-right", fontWeight: 700 }}>
+									<Type style={{ fontWeight: 700 }}>
 										(Books + Stationery)
 										<br />
 										{`Grand Total:  ₹ ${booksPrice[0] + stationeryPrice}`}
@@ -257,7 +257,7 @@ const GetBooks = () => {
 										<br />
 									</Type>
 									{isPackSelected && (
-										<Type style={{ textAlign: "-webkit-right", fontWeight: 200 }}>
+										<Type style={{ fontWeight: 200 }}>
 											Effective Grand Total <br /> ₹ {booksPrice[0] + stationeryPrice} - ₹ 1000
 											<br /> ₹{booksPrice[0] + stationeryPrice - 1000}
 										</Type>

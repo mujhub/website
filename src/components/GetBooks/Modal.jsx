@@ -17,19 +17,6 @@ const Modal = ({ show, hide, data, setSubmitted }) => {
 	return (
 		<ModalContainer show={show}>
 			<div className='content'>
-				{/* <div className='logo'>
-					<div>
-						<img src={LOGO} alt='MUJ HUB' />
-					</div>
-					<button>
-						<FiDownload style={{ marginRight: "0.5rem" }} size='18px' />
-						DOWNLOAD
-					</button>
-					<button style={{ background: "#EB5757", color: "white" }} onClick={() => hide(false)}>
-						<IoClose size='18px' />
-					</button>
-				</div> */}
-
 				<H6 style={{ textDecoration: "underline" }}>Summary</H6>
 				<Divider />
 				<div className='details'>
@@ -68,6 +55,10 @@ const Modal = ({ show, hide, data, setSubmitted }) => {
 				<Divider />
 				<Type style={{ fontWeight: 600 }}>Total Price: ₹ {total_min === total_max ? total_max : `${total_min} to ₹ ${total_max}`}</Type>
 				<Divider />
+				<Type style={{ fontSize: 13 }}>
+					Pro Tip: Do confirm the refund amount with the dealer on call too, there's a lot of fluidity in their pricing plans. Might save up on some
+					more!
+				</Type>
 				<div className='logo'>
 					<div style={{ display: "flex", flexDirection: "row", justifyContent: "space-between", marginTop: 30 }}>
 						<button
