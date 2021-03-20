@@ -2,6 +2,7 @@ import React from "react";
 
 import { H4, Type, Caption } from "../../styles/Shared/StyledTypes";
 import { Hero as HeroDiv } from "../../styles/components/HomeStyles";
+import { Banner } from "../Home/Banner";
 
 import PWAInstallerBtn from "../Misc/PWAInstallerBtn";
 
@@ -34,9 +35,10 @@ export const Hero = () => {
             <PWAInstallerBtn />
           </div>
           <Caption>
-            If this does not work, try Options > Add to Home Screen.
+            If this does not work, try Options &gt; Add to Home Screen.
           </Caption>
         </div>
+        <Banner platform="desktop" style={{ marginTop: "2rem" }} />
       </HeroDiv>
     </>
   );

@@ -14,6 +14,8 @@ import {
 } from "../../styles/components/MessStyles";
 import { countMessView } from "../../services/analytics-ua";
 
+import { Banner } from "../Home/Banner";
+
 export const MessMenuCard = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [mealData, setMealData] = useState([]);
@@ -97,17 +99,24 @@ export const MessMenuCard = () => {
   }, []);
 
   return (
-    <MessMenu>
-      <Caption>MESS MENU{updatedAtDate ? " - " + updatedAtDate : null}</Caption>
-      {!isLoading ? (
-        mealData.length > 0 ? (
-          mealData.map((meal, i) => renderMeal(meal, i, mealData.length))
+    <div
+      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
+    >
+      <Banner platform="mobile" />
+      <MessMenu>
+        <Caption>
+          MESS MENU{updatedAtDate ? " - " + updatedAtDate : null}
+        </Caption>
+        {!isLoading ? (
+          mealData.length > 0 ? (
+            mealData.map((meal, i) => renderMeal(meal, i, mealData.length))
+          ) : (
+            <EmptyData />
+          )
         ) : (
-          <EmptyData />
-        )
-      ) : (
-        <LoadingData />
-      )}
-    </MessMenu>
+          <LoadingData />
+        )}
+      </MessMenu>
+    </div>
   );
 };

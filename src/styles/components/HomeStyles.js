@@ -202,5 +202,24 @@ export const FormStyles = styled.section`
 // banner styles
 
 export const BannerStyles = styled.div`
-  background-color: ${(props) => props.theme.ORANGE}40;
+  display: ${(props) => (props.platform === "desktop" ? "block" : "none")};
+  margin-top: ${(props) => (props.platform === "desktop" ? "2rem" : "0")};
+  max-width: 85%;
+  background-color: ${(props) => props.theme.YELLOW}30;
+  box-shadow: 0px 0px 20px ${(props) => props.theme.YELLOW}30;
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  border: 2px solid ${(props) => props.theme.YELLOW};
+  border-radius: 4px;
+
+  .link {
+    color: ${(props) => props.theme.PRIMARY};
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  @media (max-width: 768px) {
+    max-width: 100%;
+    display: ${(props) => (props.platform === "desktop" ? "none" : "block")};
+  }
 `;
