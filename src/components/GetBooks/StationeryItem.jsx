@@ -1,4 +1,6 @@
 import React from "react";
+import { Caption } from "../../styles/Shared/StyledTypes";
+
 export const StationeryItem = ({ item }) => {
   return (
     <>
@@ -16,6 +18,9 @@ export const StationeryItem = ({ item }) => {
       ) : (
         <p>Rs.{item.price}</p>
       )}
+      <Caption selected={item.selected} style={{ fontSize: "12px" }}>
+        {item.selected ? "✓ SELECTED" : "✗ NOT SELECTED"}
+      </Caption>
     </>
   );
 };
