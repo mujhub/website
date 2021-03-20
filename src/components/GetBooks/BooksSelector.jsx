@@ -1,8 +1,13 @@
 import React, { useState } from "react";
 
-import { H6, Type } from "../../styles/Shared/StyledTypes";
+import { H6, Type, Caption } from "../../styles/Shared/StyledTypes";
 import { Item, ItemContainer, FormSection, PriceSection } from "../../styles/components/BookStyles";
 import { Divider } from "../../styles/components/HomeStyles";
+
+import { BookItem, BookItemNotInPack } from "./BookItem";
+
+//test book
+// import testBook from "../../images/testBook.jpg";
 
 const BooksSelector = ({ booksData, handleBookSelect, isPackSelected, additionalBooks, handleAdditionalBooksChange, booksPrice }) => {
 	const [additionalTick, setAdditionalTick] = useState(false);
@@ -23,15 +28,7 @@ const BooksSelector = ({ booksData, handleBookSelect, isPackSelected, additional
 								onClick={() => {
 									handleBookSelect(i);
 								}}>
-								<p style={{ fontWeight: 500 }}>{data.name}</p>
-								<p>{data.description}</p>
-
-								{!isPackSelected && (
-									<p>
-										{`Price: ₹ ${data.price[0]}`}
-										{data.price[0] !== data.price[1] ? ` to ₹ ${data.price[1]}` : null}
-									</p>
-								)}
+								<BookItem img={data.sourceUrl} isPackSelected={isPackSelected} data={data} />
 							</Item>
 						)
 				)}
@@ -46,46 +43,47 @@ const BooksSelector = ({ booksData, handleBookSelect, isPackSelected, additional
 								onClick={() => {
 									handleBookSelect(i);
 								}}>
-								<p>Name: {data.name}</p>
-								<p>Author: {data.description}</p>
-								<p>
-									{`Price: ₹ ${data.price[0]}`}
-									{data.price[0] !== data.price[1] ? ` to ₹ ${data.price[1]}` : null}
-								</p>
+								<BookItemNotInPack img={data.sourceUrl} data={data} />
 							</Item>
 						)
 				)}
 			</ItemContainer>
+			{/* <Divider /> */}
 			<PriceSection>
 				{isPackSelected ? (
 					<>
-						<Divider />
-						<Type style={{ textAlign: "-webkit-right" }}>
+						<Type>
 							Pack Price: ₹ {booksPrice[0]}
 							{booksPrice[0] !== booksPrice[1] ? ` - ₹ ${booksPrice[1]}` : null}
 						</Type>
-						<Type style={{ textAlign: "-webkit-right" }}>
+						<Type>
 							Refund: - ₹ 1000
 							{booksPrice[0] !== booksPrice[1] ? ` - ₹ ${booksPrice[1]}` : null}
 						</Type>
-						<Type style={{ textAlign: "-webkit-right" }}>
+						<Type>
 							Effective Books Price: ₹ {booksPrice[0] - 1000}
 							{booksPrice[0] !== booksPrice[1] ? ` to ₹ ${booksPrice[1] - 1000}` : null}
 						</Type>
 					</>
 				) : (
-					<Type style={{ textAlign: "-webkit-right" }}>
+					<Type>
 						Total Books Price: ₹ {booksPrice[0]}
 						{booksPrice[0] !== booksPrice[1] ? ` to ₹ ${booksPrice[1]}` : null}
 					</Type>
 				)}
 			</PriceSection>
 			<FormSection>
-				<div style={{ marginTop: "1rem", display: "flex", flexDirection: "row", alignItems: "center" }}>
+				<div
+					style={{
+						marginTop: "1rem",
+						display: "flex",
+						flexDirection: "row",
+						alignItems: "center",
+					}}>
 					<label htmlFor='additional'>
 						<input
 							id='additional'
-							style={{ minWidth: 10 }}
+							style={{ minWidth: 10, marginRight: "0.5rem" }}
 							type='checkbox'
 							checked={additionalTick}
 							onChange={(e) => {
