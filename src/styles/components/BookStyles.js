@@ -82,7 +82,7 @@ export const ItemContainer = styled.div`
   border-radius: 4px;
   border: 2px solid;
   border-color: ${(props) =>
-    props.isPackSelected ? props.theme.GREEN1 : "#00000000"};
+    props.isPackSelected ? props.theme.PRIMARY : "#00000000"};
 
   @media (max-width: 768px) {
     // padding: 1rem;
@@ -105,10 +105,10 @@ export const Item = styled.div`
   height: fit-content;
 
   background-color: ${(props) =>
-    props.selected ? props.theme.SELECTED : props.theme.BG2};
-  box-shadow: 0px 0px 20px
+    props.selected ? props.theme.PRIMARY : props.theme.BG2}30;
+  /* box-shadow: 0px 0px 20px
     ${(props) =>
-      props.selected ? props.theme.SELECTED : "rgba(0, 0, 0, 0.1)"}50;
+    props.selected ? props.theme.GREEN1 : "rgba(0, 0, 0, 0.1)"}50; */
 
   & > div {
     display: flex;
