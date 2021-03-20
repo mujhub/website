@@ -74,6 +74,7 @@ export const FormSection = styled.section`
 export const ItemContainer = styled.div`
   margin: 2rem 0;
   width: 100%;
+
   max-width: fit-content;
   display: grid;
   padding: 0.25rem;
@@ -85,6 +86,7 @@ export const ItemContainer = styled.div`
 
   @media (max-width: 768px) {
     // padding: 1rem;
+    padding: 0 0.5rem;
     grid-template-columns: auto;
     align-items: center;
     justify-content: center;
