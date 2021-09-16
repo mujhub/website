@@ -4,16 +4,16 @@ import "firebase/auth";
 import "firebase/storage";
 
 const firebaseConfig = {
-	apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-	authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-	projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-	storageBucket: "muj-hub.appspot.com",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: "muj-hub.appspot.com",
 };
 
 if (!firebase.apps.length) {
-	firebase.initializeApp(firebaseConfig);
+  firebase.initializeApp(firebaseConfig);
 } else {
-	firebase.app();
+  firebase.app();
 }
 
 export const currentTimestamp = firebase.firestore.FieldValue.serverTimestamp();

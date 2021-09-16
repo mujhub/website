@@ -7,18 +7,18 @@ import MessLogin from "../pages/MessLogin";
 // import { AuthProvider } from "./contexts/Auth";
 
 const MessRoutes = () => {
-	const { path } = useRouteMatch();
-	return (
-		<Switch>
-			<PrivateRoute exact path={`${path}`}>
-				<MessPanel />
-			</PrivateRoute>
+  const { path } = useRouteMatch();
+  return (
+    <Switch>
+      <PrivateRoute exact path={`${path}`}>
+        <MessPanel />
+      </PrivateRoute>
 
-			<Route path={`${path}/login`}>
-				<MessLogin />
-			</Route>
-		</Switch>
-	);
+      <Route path={`${path}/login`}>
+        <MessLogin />
+      </Route>
+    </Switch>
+  );
 };
 
 export default MessRoutes;

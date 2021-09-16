@@ -3,16 +3,16 @@ import { useHistory } from "react-router-dom";
 import { pageView } from "../../services/analytics-ua";
 
 const AnalyticSupplier = () => {
-	const history = useHistory();
+  const history = useHistory();
 
-	useEffect(() => {
-		pageView(history.location.pathname);
-		return history.listen((location) => {
-			pageView(history.location.pathname);
-		});
-	});
+  useEffect(() => {
+    pageView(history.location.pathname);
+    return history.listen(location => {
+      pageView(history.location.pathname);
+    });
+  });
 
-	return null;
+  return null;
 };
 
 export default AnalyticSupplier;

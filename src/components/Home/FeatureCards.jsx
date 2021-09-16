@@ -1,7 +1,9 @@
+import React from "react";
+
 import { Card } from "../../styles/components/HomeStyles";
 import { H6, Type } from "../../styles/Shared/StyledTypes";
 
-export const FeatureCard = (props) => {
+export const FeatureCard = props => {
   const { feature } = props;
   return (
     <Card className="desktop" color={feature.color}>

@@ -4,9 +4,7 @@ import React, { useContext } from "react";
 import { ThemeContext } from "styled-components";
 
 // icons
-import { IoFastFood } from "react-icons/io5";
-import { IoRestaurant } from "react-icons/io5";
-import { IoSchool, IoHeart } from "react-icons/io5";
+import { IoFastFood, IoRestaurant, IoSchool, IoHeart } from "react-icons/io5";
 
 // components
 import { Hero } from "../components/Home/Hero";
@@ -22,15 +20,14 @@ import {
 } from "../styles/components/HomeStyles";
 import { Button } from "../styles/Shared/Button";
 
-const Home = (props) => {
+const Home = props => {
   const theme = useContext(ThemeContext);
 
   // features
   const features = [
     {
       heading: "Mess Menu",
-      desc:
-        "Can't wait to see what's on the menu for lunch? Head over to MUJ HUB!",
+      desc: "Can't wait to see what's on the menu for lunch? Head over to MUJ HUB!",
       icon: <IoRestaurant size="24px" />,
       color: theme.GREEN2,
     },
@@ -43,15 +40,13 @@ const Home = (props) => {
 
     {
       heading: "Eateries",
-      desc:
-        "Craving tasty food at night? View menus and order from any outlet through MUJ HUB.",
+      desc: "Craving tasty food at night? View menus and order from any outlet through MUJ HUB.",
       icon: <IoFastFood size="24px" />,
       color: theme.PURPLE2,
     },
     {
       heading: "Coming Soon..",
-      desc:
-        "Your one-stop solution to everything in MUJ is constantly working on new features.",
+      desc: "Your one-stop solution to everything in MUJ is constantly working on new features.",
       icon: <IoHeart size="24px" />,
       color: theme.RED,
     },
