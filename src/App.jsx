@@ -13,7 +13,7 @@ import Team from "./pages/Team";
 import { AuthProvider } from "./contexts/Auth";
 
 import MessRoutes from "./routes/MessRoutes";
-
+import EateriesRoutes from "./routes/EateriesRoutes";
 import useLocalTheme from "./helper/themeHandler";
 import GlobalStyle from "./helper/globalStyle";
 
@@ -36,6 +36,9 @@ const App = () => {
               <Route exact path="/team" component={Team} />
               <Route path="/mess">
                 <MessRoutes />
+              </Route>
+              <Route path="/eateries">
+                <EateriesRoutes />
               </Route>
               <Route component={NotFound} />
             </Switch>
