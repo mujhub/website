@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { BsFillBrightnessHighFill, BsMoon } from "react-icons/bs";
-import { Button } from "../../../styles/components/layout/NavbarStyles";
 import { ThemeContext } from "styled-components";
+import { Button } from "../../../styles/components/layout/NavbarStyles";
 import theme from "../../../theme";
 
 const ThemeSwitch = ({ toggleTheme }) => {

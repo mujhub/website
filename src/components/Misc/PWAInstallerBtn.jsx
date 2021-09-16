@@ -13,7 +13,7 @@ const PWAInstallerBtn = () => {
       window.matchMedia("(display-mode: standalone)").matches
     );
 
-    const handler = (e) => {
+    const handler = e => {
       e.preventDefault();
       setPromptInstall(e);
     };
@@ -22,7 +22,7 @@ const PWAInstallerBtn = () => {
     return () => window.removeEventListener("transitionend", handler);
   }, []);
 
-  const handleInstallClick = (event) => {
+  const handleInstallClick = event => {
     event.preventDefault();
     if (!promptInstall) {
       return;

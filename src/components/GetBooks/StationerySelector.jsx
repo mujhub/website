@@ -18,7 +18,7 @@ const StationerySelector = ({ stationeryData, handleStationerySelect }) => {
             isStationery
             selected={item.selected}
             key={item.id}
-            onClick={(e) => {
+            onClick={e => {
               handleStationerySelect(i);
             }}
           >

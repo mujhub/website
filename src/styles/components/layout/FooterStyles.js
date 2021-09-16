@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
 export const FooterStyles = styled.footer`
-  background-color: ${(props) => props.theme.BG2};
+  background-color: ${props => props.theme.BG2};
   padding: 0rem 2rem;
   margin-top: 1rem;
 
   a {
-    color: ${(props) => props.theme.PLACEHOLDER};
+    color: ${props => props.theme.PLACEHOLDER};
   }
 
   p {

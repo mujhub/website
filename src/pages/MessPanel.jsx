@@ -5,34 +5,38 @@ import { getMessMenu } from "../services/firestore";
 import Ribbon from "../components/Mess/Ribbon";
 
 const MessPanel = () => {
-	const [currentMenuData, setCurrentMenuData] = useState({});
-	const [isLoading, setIsLoading] = useState(false);
+  const [currentMenuData, setCurrentMenuData] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
 
-	const fetchData = async () => {
-		try {
-			setIsLoading(true);
-			const res = await getMessMenu();
-			if (!res) return;
-			if (!res.exists) return;
+  const fetchData = async () => {
+    try {
+      setIsLoading(true);
+      const res = await getMessMenu();
+      if (!res) return;
+      if (!res.exists) return;
 
-			setCurrentMenuData(res.data());
-		} catch (error) {
-			console.log(error);
-		} finally {
-			setIsLoading(false);
-		}
-	};
+      setCurrentMenuData(res.data());
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-	useEffect(() => {
-		fetchData();
-	}, []);
+  useEffect(() => {
+    fetchData();
+  }, []);
 
-	return (
-		<div>
-			<Ribbon />
-			{!isLoading ? <Dashboard currentMenuData={currentMenuData} /> : <div>Loading...</div>}
-		</div>
-	);
+  return (
+    <div>
+      <Ribbon />
+      {!isLoading ? (
+        <Dashboard currentMenuData={currentMenuData} />
+      ) : (
+        <div>Loading...</div>
+      )}
+    </div>
+  );
 };
 
 export default MessPanel;

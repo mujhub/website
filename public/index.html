@@ -1,48 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<meta name="theme-color" content="#000000" />
-		<meta name="description" content="One stop solution for everything in MUJ!" />
-		<link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" />
-		<!-- fonts -->
-		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet" />
-		<link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-		<title>MUJ HUB</title>
-	</head>
-	<body>
-		<noscript>You need to enable JavaScript to run this app.</noscript>
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="One stop solution for everything in MUJ!"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <!-- fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <title>MUJ HUB</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
 
-		<!-- A little help for the Netlify post-processing bots -->
-		<form name="Feedback" netlify netlify-honeypot="bot-field" hidden>
-			<input type="text" name="name" />
-			<textarea type="text" name="message"></textarea>
-		</form>
+    <!-- A little help for the Netlify post-processing bots -->
+    <form name="Feedback" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <textarea type="text" name="message"></textarea>
+    </form>
 
-		<div id="root"></div>
-		<script>
-			if ("serviceWorker" in navigator) {
-				window.addEventListener("load", function () {
-					navigator.serviceWorker
-						.register("worker.js")
-						.then(
-							function (registration) {
-								console.log("Worker registration successful", registration.scope);
-							},
-							function (err) {
-								console.log("Worker registration failed", err);
-							}
-						)
-						.catch(function (err) {
-							console.log(err);
-						});
-				});
-			} else {
-				console.log("Service Worker is not supported by browser.");
-			}
-		</script>
-	</body>
+    <div id="root"></div>
+    <script>
+      if ("serviceWorker" in navigator) {
+        window.addEventListener("load", function () {
+          navigator.serviceWorker
+            .register("worker.js")
+            .then(
+              function (registration) {
+                console.log(
+                  "Worker registration successful",
+                  registration.scope
+                );
+              },
+              function (err) {
+                console.log("Worker registration failed", err);
+              }
+            )
+            .catch(function (err) {
+              console.log(err);
+            });
+        });
+      } else {
+        console.log("Service Worker is not supported by browser.");
+      }
+    </script>
+  </body>
 </html>

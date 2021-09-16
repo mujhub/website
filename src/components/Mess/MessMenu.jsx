@@ -28,11 +28,11 @@ export const MessMenuCard = () => {
       if (!res) return;
       if (!res.exists) return;
 
-      let data = res.data();
+      const data = res.data();
       if (data.meals) setMealData(data.meals);
       if (data.updatedAt) {
-        let date = new Date(data.updatedAt.seconds * 1000);
-        let updatedAt = `${date.getDate()}.${
+        const date = new Date(data.updatedAt.seconds * 1000);
+        const updatedAt = `${date.getDate()}.${
           date.getMonth() + 1
         }.${date.getFullYear()}`;
         setUpdatedAtDate(updatedAt);
@@ -54,7 +54,7 @@ export const MessMenuCard = () => {
   const MealText = ({ meal }) => (
     <MenuItem>
       {meal.menu.map((item, i) =>
-        i < meal.menu.length - 1 ? item + ", " : item
+        i < meal.menu.length - 1 ? `${item} + , ` : item
       )}
     </MenuItem>
   );
@@ -105,7 +105,7 @@ export const MessMenuCard = () => {
       <Banner platform="mobile" />
       <MessMenu>
         <Caption>
-          MESS MENU{updatedAtDate ? " - " + updatedAtDate : null}
+          MESS MENU{updatedAtDate ? ` - ${updatedAtDate}` : null}
         </Caption>
         {!isLoading ? (
           mealData.length > 0 ? (

@@ -4,7 +4,7 @@ export const Card = styled.div`
   margin: 2rem;
   border-radius: 8px;
   padding-bottom: 1rem;
-  background-color: ${(props) => props.theme.BG2};
+  background-color: ${props => props.theme.BG2};
   /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); */
 
   .memberName {
@@ -22,7 +22,7 @@ export const Card = styled.div`
     /* margin-top: 0.5rem; */
     margin-left: 1rem;
     a {
-      color: ${(props) => props.theme.PRIMARY};
+      color: ${props => props.theme.PRIMARY};
       margin-right: 1rem;
     }
   }
@@ -42,7 +42,7 @@ export const TeamHeaderContainer = styled.section`
 
   .TeamHeaderDesc {
     padding: 0 1.5rem;
-    color: ${(props) => props.theme.PLACEHOLDER};
+    color: ${props => props.theme.PLACEHOLDER};
   }
 
   @media (max-width: 768px) {

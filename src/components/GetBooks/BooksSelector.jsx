@@ -7,12 +7,8 @@ import {
   FormSection,
   PriceSection,
 } from "../../styles/components/BookStyles";
-import { Divider } from "../../styles/components/HomeStyles";
 
 import { BookItem, BookItemNotInPack } from "./BookItem";
-
-//test book
-// import testBook from "../../images/testBook.jpg";
 
 const BooksSelector = ({
   booksData,
@@ -88,7 +84,7 @@ const BooksSelector = ({
               style={{ minWidth: 16, marginRight: "0.5rem" }}
               type="checkbox"
               checked={additionalTick}
-              onChange={(e) => {
+              onChange={e => {
                 setAdditionalTick(e.target.checked);
               }}
             />

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { withRouter, Redirect, useHistory } from "react-router-dom";
 import { useAuth } from "../../contexts/Auth";
 
-//styles
+//  styles
 import { FormStyles } from "../../styles/components/HomeStyles";
 import { LoginStyles } from "../../styles/components/MessStyles";
 import { Button } from "../../styles/Shared/Button";
@@ -16,7 +16,7 @@ const LoginForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
 
-  const handleLogin = async (event) => {
+  const handleLogin = async event => {
     event.preventDefault();
     try {
       setIsLoading(true);
@@ -28,8 +28,8 @@ const LoginForm = () => {
       await login(email.value, password.value);
 
       history.replace("/mess");
-    } catch (error) {
-      setError(error.message);
+    } catch (err) {
+      setError(err.message);
     } finally {
       setIsLoading(false);
     }
@@ -45,7 +45,7 @@ const LoginForm = () => {
     <FormStyles>
       <LoginStyles>
         <Container m="2rem 2rem" center>
-          {currentUser ? <Redirect to={"/mess"} /> : null}
+          {currentUser ? <Redirect to="/mess" /> : null}
           <H5>Mess Login</H5>
           {error ? <div>{error}</div> : null}
           <form onSubmit={handleLogin}>
