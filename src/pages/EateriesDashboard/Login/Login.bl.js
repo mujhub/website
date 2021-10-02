@@ -1,41 +1,63 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-
+import {firebaseUtil} from "../../../services/firebase";
 import { message, Form } from "antd";
 
 const isPhoneNumberValid = value => value.match(/\d/g).length === 10;
-const isOtpValid = value => value.match(/\d/g).length === 6;
 
 export const useForm = () => {
   const history = useHistory();
   const [formRef] = Form.useForm();
   const [isOtpSent, setIsOtpSent] = useState(false);
+  const [final,setFinal] = useState("");
+  const [otp,setOtp] = useState("");
+
+  const grabOtp = (value) => {
+    setOtp(value);
+  }
 
   const onReset = () => {
     formRef.resetFields();
     setIsOtpSent(false);
   };
 
-  const onSubmit = ({ phoneNumber, otp }) => {
-    // TODO: verify otp
+  const onSubmit = () => {
 
     // on success
-    if (isOtpValid(otp)) {
+    final.confirm(otp).then((result) => {
       message.success("Successful", 5);
-      history.push("/eateries/dashboard");
-    } else {
+      console.log("otp valid");
+    }).catch((err) => {
       message.error("OTP is invalid", 5);
       formRef.current.setFieldsValue({
         otp: "",
       });
-    }
+      console.log("otp invalid");
+    })
   };
+
+  // const auth = getAuth();
+
+  const onSignInSubmit = () => {
+
+    const phoneNumber = formRef.current.getFieldValue("phoneNumber");
+
+    const appVerifier = new firebaseUtil.auth.RecaptchaVerifier("sign-in-button");
+
+    firebaseUtil.auth().signInWithPhoneNumber(phoneNumber,appVerifier)
+    .then((confirmationResult) => {
+      setFinal(confirmationResult);
+      console.log(confirmationResult,"result");
+    }).catch((error) => {
+      console.log(error);
+    });
+  }
 
   const sendOtp = () => {
     const phoneNumber = formRef.current.getFieldValue("phoneNumber");
-    if (isPhoneNumberValid(phoneNumber)) {
+    if (phoneNumber){
+      onSignInSubmit();
       message.success(`OTP Sent to ${phoneNumber}`, 5);
-      // TODO: otp service
       setIsOtpSent(true);
     } else message.error("Invalid Phone Number", 5);
   };
@@ -49,6 +71,7 @@ export const useForm = () => {
     onSubmit,
     onReset,
     sendOtp,
+    grabOtp,
     onSubmitError,
   };
 

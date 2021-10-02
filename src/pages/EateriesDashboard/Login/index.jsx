@@ -1,3 +1,4 @@
+
 import React from "react";
 
 // components
@@ -9,7 +10,7 @@ import { useForm } from "./Login.bl";
 
 const EateriesLogin = () => {
   const [formRef, isOtpSent, helpers] = useForm();
-  const { onSubmit, onReset, sendOtp, onSubmitError } = helpers;
+  const { onSubmit, onReset, sendOtp, onSubmitError,grabOtp } = helpers;
 
   return (
     <Container className="flex justify-center items-center gap-6 flex-col m-auto">
@@ -37,6 +38,8 @@ const EateriesLogin = () => {
           />
         </Form.Item>
 
+        <div id="sign-in-button" />
+
         {!isOtpSent && (
           <Form.Item wrapperCol={{ offset: 0, span: 16 }}>
             <Button type="primary" htmlType="button" onClick={sendOtp}>
@@ -57,7 +60,7 @@ const EateriesLogin = () => {
                 },
               ]}
             >
-              <Input.Password placeholder="000000" />
+              <Input.Password placeholder="000000" onChange={(e) => grabOtp(e.target.value)}/>
             </Form.Item>
 
             <div className="flex gap-5">
