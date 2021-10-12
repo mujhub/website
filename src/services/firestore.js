@@ -10,3 +10,5 @@ export const setMessMenu = meals =>
 
 export const getBookStoreData = () =>
   db.collection("menus").doc("kumawat-stationery").get();
+
+export const getEateryOwner = (uid) => db.collection("owners").doc(uid).get();

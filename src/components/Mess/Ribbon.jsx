@@ -6,7 +6,7 @@ import { auth } from "../../services/firebase";
 import { RibbonStyle } from "../../styles/components/MessStyles";
 import { Type } from "../../styles/Shared/StyledTypes";
 
-const Ribbon = () => {
+const Ribbon = ({eatery}) => {
   const { currentUser } = useAuth();
 
   const handleLogout = () => {
@@ -15,7 +15,7 @@ const Ribbon = () => {
 
   return (
     <RibbonStyle>
-      {`Hello, ${currentUser.email}`}
+      {eatery ? `Hello, ${eatery}` : `Hello, ${currentUser.email}` }
       <Type onClick={handleLogout}>
         <u>LOGOUT</u>
       </Type>
