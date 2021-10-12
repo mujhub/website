@@ -11,9 +11,14 @@ export const useForm = () => {
   const [isOtpSent, setIsOtpSent] = useState(false);
   const [final,setFinal] = useState("");
   const [otp,setOtp] = useState("");
+  // const [phone,setPhone] = useState(null);
 
   const grabOtp = (value) => {
     setOtp(value);
+  }
+  
+  const grabPhone = (value) => {
+    // setPhone(value);
   }
 
   const onReset = () => {
@@ -23,9 +28,13 @@ export const useForm = () => {
 
   const onSubmit = () => {
 
+    const otpNumber = formRef.current.getFieldValue("otp");
+    console.log(otpNumber,"otp");
+
     // on success
     final.confirm(otp).then((result) => {
       message.success("Successful", 5);
+      history.replace("/eateries");
       console.log("otp valid");
     }).catch((err) => {
       message.error("OTP is invalid", 5);
@@ -41,7 +50,7 @@ export const useForm = () => {
   const onSignInSubmit = () => {
 
     const phoneNumber = formRef.current.getFieldValue("phoneNumber");
-
+    
     const appVerifier = new firebaseUtil.auth.RecaptchaVerifier("sign-in-button");
 
     firebaseUtil.auth().signInWithPhoneNumber(phoneNumber,appVerifier)
@@ -52,10 +61,12 @@ export const useForm = () => {
       console.log(error);
     });
   }
-
+  
   const sendOtp = () => {
     const phoneNumber = formRef.current.getFieldValue("phoneNumber");
+
     if (phoneNumber){
+      console.log(phoneNumber,"phone number");
       onSignInSubmit();
       message.success(`OTP Sent to ${phoneNumber}`, 5);
       setIsOtpSent(true);
@@ -72,8 +83,9 @@ export const useForm = () => {
     onReset,
     sendOtp,
     grabOtp,
+    grabPhone,
     onSubmitError,
   };
-
+  
   return [formRef, isOtpSent, helper];
 };

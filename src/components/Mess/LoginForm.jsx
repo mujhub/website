@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { withRouter, Redirect, useHistory } from "react-router-dom";
 import { useAuth } from "../../contexts/Auth";
+import {auth} from "../../services/firebase";
 
 //  styles
 import { FormStyles } from "../../styles/components/HomeStyles";
@@ -10,7 +11,7 @@ import { Container } from "../../styles/Shared/Container";
 import { H5 } from "../../styles/Shared/StyledTypes";
 
 const LoginForm = () => {
-  const { login, currentUser } = useAuth();
+  const {currentUser } = useAuth();
   const history = useHistory();
 
   const [isLoading, setIsLoading] = useState(false);
@@ -25,7 +26,7 @@ const LoginForm = () => {
       if (!email.value) throw Error("Please enter an email");
       if (!password.value) throw Error("Please enter your password");
 
-      await login(email.value, password.value);
+      await auth.signInWithEmailAndPassword(email.value, password.value);
 
       history.replace("/mess");
     } catch (err) {

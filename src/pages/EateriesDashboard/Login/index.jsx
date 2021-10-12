@@ -1,5 +1,5 @@
-
-import React from "react";
+import React, { useState } from "react";
+import {Redirect} from "react-router-dom";
 
 // components
 import { Form, Input, Button } from "antd";
@@ -7,20 +7,24 @@ import { Container } from "../../../styles/components/EateriesStyles";
 
 // business logic
 import { useForm } from "./Login.bl";
+import { useAuth } from "../../../contexts/Auth";
 
 const EateriesLogin = () => {
+  const {currentUser } = useAuth();
   const [formRef, isOtpSent, helpers] = useForm();
-  const { onSubmit, onReset, sendOtp, onSubmitError,grabOtp } = helpers;
-
+  const { onSubmit, onReset, sendOtp, onSubmitError,grabOtp,grabPhone } = helpers;
+  // const [phone,setPhone] = useState("")
+  
   return (
     <Container className="flex justify-center items-center gap-6 flex-col m-auto">
       <h2 className="text-xl font-semibold text-left">Eateries Login</h2>
+      {currentUser ? <Redirect to="/eateries" /> : null}
       <Form
         ref={formRef}
         layout="vertical"
         onFinish={onSubmit}
         onFinishFailed={onSubmitError}
-      >
+        >
         <Form.Item
           label="Phone Number"
           name="phoneNumber"
@@ -30,7 +34,8 @@ const EateriesLogin = () => {
               message: "Please input your phone number!",
             },
           ]}
-        >
+          >
+
           <Input
             prefix={<p className="text-gray-500">+91</p>}
             disabled={isOtpSent}
