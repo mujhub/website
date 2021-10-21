@@ -10,6 +10,9 @@ const Ribbon = ({eatery}) => {
   const { currentUser } = useAuth();
 
   const handleLogout = () => {
+    if(eatery){
+      localStorage.removeItem("slug");
+    }
     auth.signOut();
   };
 

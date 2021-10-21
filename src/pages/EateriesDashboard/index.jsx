@@ -1,22 +1,24 @@
 import Ribbon from "../../components/Mess/Ribbon";
 import React, { useEffect,useState } from "react";
 import { useAuth } from "../../contexts/Auth";
-import { getEateryOwner } from "../../services/firestore";
+import { getEateryOwner, getAllOrders } from "../../services/firestore";
 
 import { Container } from "../../styles/components/EateriesStyles";
+import { saveEateryOwnerToken } from "../../services/push_notification";
 
 const EateriesDashboard = () => {
   const {currentUser} = useAuth();
-  console.log(currentUser.uid,"uid");
-
   const [eateryOwner,setEateryOwner] = useState("");
 
   useEffect(() => {
     const getOwner = async () => {
       const res = await getEateryOwner(currentUser.uid);
         setEateryOwner(res.data().slug);
+        localStorage.setItem("slug",res.data().slug);
     }
     getOwner();
+    getAllOrders();
+    saveEateryOwnerToken();
   },[])
 
   return ( 
