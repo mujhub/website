@@ -1,0 +1,50 @@
+{
+  "dev-sweets": {
+    "location": "B4 Ground Floor",
+    "closes_at": "20:30",
+    "contact": "",
+    "offers": [
+      {
+        "icons_name": "",
+        "heading": "",
+        "body": ""
+      }
+    ],
+    "opens_at": "07:30",
+    "score": 0,
+    "tint": "#56CCF2",
+    "cover": "",
+    "is_featured": false,
+    "description": "Sandwiches, Burgers, Sweets etc.",
+    "title": "Dev Sweets",
+    "slug": "dev-sweets",
+    "payments": {
+      "paytm": "",
+      "upi": ""
+    }
+  },
+  "jaipur-bakers": {
+    "location": "G3 Ground Floor",
+    "is_featured": true,
+    "contact": "7879071212",
+    "description": "Best Bakers in the City!",
+    "payments": {
+      "upi": "",
+      "paytm": ""
+    },
+    "offers": [
+      {
+        "body": "Mention Coupon Code 'MUJHUB10' while ordering over call via MUJ HUB to avail 10% off on all drinks from Saras between 11pm to 2am.",
+        "heading": "150K Special!",
+        "icons_name": ""
+      }
+    ],
+    "score": 0,
+    "cover": "",
+    "slug": "jaipur-bakers",
+    "title": "Jaipur Bakers",
+    "closes_at": "23:00",
+    "tint": "#F2C94C",
+    "opens_at": "00:00"
+  }
+}

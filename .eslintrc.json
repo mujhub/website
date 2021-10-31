@@ -37,6 +37,7 @@
     "react/no-array-index-key": "warn",
     "react/react-in-jsx-scope": "warn",
     "arrow-body-style": "warn",
+    "import/no-extraneous-dependencies": "off",
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
     "prettier/prettier": "warn",
     "prefer-template": "warn",

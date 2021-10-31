@@ -13,16 +13,5 @@ export const getBookStoreData = () =>
 
 export const getEateryOwner = (uid) => db.collection("owners").doc(uid).get();
 
-export const getAllOrders = () => {
-  const slug = localStorage.getItem("slug");
-
-  db.collection("orders").where("shop","==",slug)
-  .onSnapshot((querySnapshot) => {
-    const orders = [];
-    querySnapshot.forEach((doc) => {
-      orders.push(doc.data());
-      console.log(orders,"orders");
-    })
-    return orders;
-  })
-}
+export const getEateryDetails = (slug) => 
+  db.collection("eateries").doc(slug).get();
