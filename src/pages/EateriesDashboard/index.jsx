@@ -9,10 +9,6 @@ import {db} from "../../services/firebase";
 import EditDetailsModal from "./EditDetailsModal/index";
 import OrderCard from "./OrderCard";
 
-import {
-  getEateryMetaData,
-  getOrdersByShopID,
-} from "../../services/eateries.services";
 
 import { Container } from "../../styles/components/EateriesStyles";
 import { saveEateryOwnerToken } from "../../services/push_notification";

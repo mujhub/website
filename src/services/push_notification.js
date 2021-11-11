@@ -3,6 +3,7 @@ import { useAuth } from "../contexts/Auth";
 import {db} from "./firebase";
 
 //! Todo Authorization
+//! Todo change slug retrieval method
 
 export const saveEateryOwnerToken = async () => {
     try {
