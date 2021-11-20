@@ -8,8 +8,6 @@ import { auth } from "../../../services/firebase";
 const OrderCard = ({ uniquekey, orderDetails }) => {
   const a = 10;
 
-  console.log(orderDetails,"orderssss");
-
   const {currentUser} = useAuth();
 
   const updateOrderStatus = () => {

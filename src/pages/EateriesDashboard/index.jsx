@@ -18,67 +18,64 @@ const EateriesDashboard = () => {
   const [eateryMetaData, setEateryMetaData] = useState({});
   const [orders, setOrders] = useState([]);
   const [editDetailsModal, setEditDetailsModal] = useState(false);
+  const [statusOrders,setStatusOrders] = useState([]);
 
   const handleChange = value => {
-    console.log(`selected ${value}`);
     const tempArray = [];
     if(value === "PENDING"){
-      let count =0;
+      let count = 0;
       for(let i=0;i<orders.length;i+=1){
         if(orders[i].data.status === "PLACED"){
           tempArray.push(orders[i]);
           count+=1;
-          console.log("placed");
-          setOrders(tempArray);
         }
         if(count === 0){
-          setOrders([]);
+          setStatusOrders([]);
         }
       }
+      setStatusOrders(tempArray);
     }
     else if(value === "INPROGRESS"){ // Accepted
-      let count = 0;
       for(let i=0;i<orders.length;i+=1) {
+        let count = 0;
+        console.log(orders,"orders inprogress");
         if(orders[i].data.status === "ACCEPTED"){
-          console.log("in accepted");
-          tempArray.push(orders[i]);
           count+=1;
-          setOrders(tempArray);
+          tempArray.push(orders[i]);
         }
         if(count === 0){
-          setOrders([]);
+          setStatusOrders([]);
         }
       }
+      setStatusOrders(tempArray);
     }
     else{ // Completed
-      let count =0;
       for(let i=0;i<orders.length;i+=1){
+        let count = 0;
         if(orders[i].data.status === "COMPLETED"){
           tempArray.push(orders[i]);
           count+=1;
-          setOrders(tempArray);
         }
         if(count === 0){
-          setOrders([]);
+          setStatusOrders([]);
         }
       }
+      setStatusOrders(tempArray);
     }
   };
 
-  console.log(orders)
+  const getOwner = () => {
+    getEateryOwner(currentUser.uid).then((res) => {
+      setEateryOwner(res.data().slug);
+      getEateryDetails(res.data().slug).then((eateryRes) => {
+        setEateryMetaData(eateryRes.data().info);
+      });
+    });
+  }
 
   useEffect(() => {
     // Save Eatery Owner Token to db
     saveEateryOwnerToken();
-
-    const getOwner = () => {
-      getEateryOwner(currentUser.uid).then((res) => {
-        setEateryOwner(res.data().slug);
-        getEateryDetails(res.data().slug).then((eateryRes) => {
-          setEateryMetaData(eateryRes.data().info);
-        });
-      });
-    }
 
     // Get owner details
     getOwner();
@@ -136,7 +133,7 @@ const EateriesDashboard = () => {
           <Select.Option value="COMPLETED">COMPLETED</Select.Option>
         </Select>
         <div className="grid gap-4 grid-cols-3">
-          {orders.map((order,key) => (
+          {statusOrders.map((order,key) => (
             <OrderCard uniquekey = {key} orderDetails={order} />
           ))}
         </div>
