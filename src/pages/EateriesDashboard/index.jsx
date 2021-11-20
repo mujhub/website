@@ -9,7 +9,6 @@ import {db} from "../../services/firebase";
 import EditDetailsModal from "./EditDetailsModal/index";
 import OrderCard from "./OrderCard";
 
-
 import { Container } from "../../styles/components/EateriesStyles";
 import { saveEateryOwnerToken } from "../../services/push_notification";
 
@@ -19,9 +18,54 @@ const EateriesDashboard = () => {
   const [eateryMetaData, setEateryMetaData] = useState({});
   const [orders, setOrders] = useState([]);
   const [editDetailsModal, setEditDetailsModal] = useState(false);
+
   const handleChange = value => {
     console.log(`selected ${value}`);
+    const tempArray = [];
+    if(value === "PENDING"){
+      let count =0;
+      for(let i=0;i<orders.length;i+=1){
+        if(orders[i].data.status === "PLACED"){
+          tempArray.push(orders[i]);
+          count+=1;
+          console.log("placed");
+          setOrders(tempArray);
+        }
+        if(count === 0){
+          setOrders([]);
+        }
+      }
+    }
+    else if(value === "INPROGRESS"){ // Accepted
+      let count = 0;
+      for(let i=0;i<orders.length;i+=1) {
+        if(orders[i].data.status === "ACCEPTED"){
+          console.log("in accepted");
+          tempArray.push(orders[i]);
+          count+=1;
+          setOrders(tempArray);
+        }
+        if(count === 0){
+          setOrders([]);
+        }
+      }
+    }
+    else{ // Completed
+      let count =0;
+      for(let i=0;i<orders.length;i+=1){
+        if(orders[i].data.status === "COMPLETED"){
+          tempArray.push(orders[i]);
+          count+=1;
+          setOrders(tempArray);
+        }
+        if(count === 0){
+          setOrders([]);
+        }
+      }
+    }
   };
+
+  console.log(orders)
 
   useEffect(() => {
     // Save Eatery Owner Token to db
@@ -29,7 +73,6 @@ const EateriesDashboard = () => {
 
     const getOwner = () => {
       getEateryOwner(currentUser.uid).then((res) => {
-        console.log(res.data(),"Responseee");
         setEateryOwner(res.data().slug);
         getEateryDetails(res.data().slug).then((eateryRes) => {
           setEateryMetaData(eateryRes.data().info);
@@ -47,7 +90,10 @@ const EateriesDashboard = () => {
       .onSnapshot((querySnapshot) => {
         const ordersData = [];
         querySnapshot.forEach((doc) => {
-          ordersData.push(doc.data());
+          ordersData.push({
+            data:doc.data(),
+            orderId:doc.id
+          });
         })
         setOrders(ordersData);
       })
@@ -86,8 +132,8 @@ const EateriesDashboard = () => {
           onChange={handleChange}
         >
           <Select.Option value="PENDING">New Orders</Select.Option>
-          <Select.Option value="INPROGRESS">Progress</Select.Option>
-          <Select.Option value="COMPLETED">Completed</Select.Option>
+          <Select.Option value="INPROGRESS">ACCEPTED</Select.Option>
+          <Select.Option value="COMPLETED">COMPLETED</Select.Option>
         </Select>
         <div className="grid gap-4 grid-cols-3">
           {orders.map((order,key) => (
