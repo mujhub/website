@@ -1,9 +1,9 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { Form, Input, TimePicker } from "antd";
 import moment from "moment";
 import Modal from "../../../components/Modal";
-import Axios from "axios"
-import {auth} from "../../../services/firebase";
+import Axios from "axios";
+import { auth } from "../../../services/firebase";
 import { API_URL } from "../../../constants/urls";
 import { getEateryOwner } from "../../../services/firestore";
 import { useAuth } from "../../../contexts/Auth";
@@ -20,39 +20,43 @@ const EditDetailsModal = ({
     setEditDetailsModal(false);
   };
 
-  const {currentUser} = useAuth();
+  const { currentUser } = useAuth();
 
-  const [name,setName] = useState("");
-  const [contact,setContact] = useState(null);
-  const [description,setDescription] = useState("");
-  const [location,setLocation] = useState("");
-  const [openTime,setOpenTime] = useState("");
-  const [closeTime,setCloseTime] = useState("");
+  const [name, setName] = useState("");
+  const [contact, setContact] = useState(null);
+  const [description, setDescription] = useState("");
+  const [location, setLocation] = useState("");
+  const [openTime, setOpenTime] = useState("");
+  const [closeTime, setCloseTime] = useState("");
 
   const updateDetails = () => {
-    getEateryOwner(currentUser.uid).then((response) => {
-      auth.currentUser.getIdToken().then((token) => {
-        Axios.post(`${API_URL}/eateries/updateInfo/${response.data().slug}`,{
-          contact,
-          description,
-          location,
-          closes_at:closeTime,
-          title:name,
-          opens_at:openTime
-        },{
-          headers:{
-            Authorization:"Bearer "+token
+    getEateryOwner(currentUser.uid).then(response => {
+      auth.currentUser.getIdToken().then(token => {
+        Axios.post(
+          `${API_URL}/eateries/updateInfo/${response.data().slug}`,
+          {
+            contact,
+            description,
+            location,
+            closes_at: closeTime,
+            title: name,
+            opens_at: openTime,
+          },
+          {
+            headers: {
+              Authorization: "Bearer " + token,
+            },
           }
-        })
-        .then((res) => {
-          console.log(res.data,"result");
-        }).catch((err) => {
-          console.log(err);
-        })
-      })
+        )
+          .then(res => {
+            console.log(res.data, "result");
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      });
     });
-
-  }
+  };
 
   return (
     <Modal
@@ -77,7 +81,10 @@ const EditDetailsModal = ({
               },
             ]}
           >
-            <Input defaultValue={outletDetails.title} onChange={(e) => setName(e.target.value)}/>
+            <Input
+              defaultValue={outletDetails.title}
+              onChange={e => setName(e.target.value)}
+            />
           </Form.Item>
           <Form.Item
             name="contact"
@@ -88,7 +95,10 @@ const EditDetailsModal = ({
               },
             ]}
           >
-            <Input defaultValue={outletDetails.contact} onChange={(e) => setContact(e.target.value)} />
+            <Input
+              defaultValue={outletDetails.contact}
+              onChange={e => setContact(e.target.value)}
+            />
           </Form.Item>
         </div>
         <Form.Item
@@ -100,7 +110,10 @@ const EditDetailsModal = ({
             },
           ]}
         >
-          <Input defaultValue={outletDetails.description} onChange={(e) => setDescription(e.target.value)} />
+          <Input
+            defaultValue={outletDetails.description}
+            onChange={e => setDescription(e.target.value)}
+          />
         </Form.Item>
         <Form.Item
           name="location"
@@ -111,13 +124,16 @@ const EditDetailsModal = ({
             },
           ]}
         >
-          <Input defaultValue={outletDetails.location} onChange={(e) => setLocation(e.target.value)}/>
+          <Input
+            defaultValue={outletDetails.location}
+            onChange={e => setLocation(e.target.value)}
+          />
         </Form.Item>
         <div className="flex gap-4 justify-between">
           <Form.Item name="opens_at" label="Opens At" className="flex-1">
             <TimePicker
               className="w-full"
-              onChange={(e) => setOpenTime(moment(e.target.value,format))}
+              onChange={e => setOpenTime(moment(e, format))}
               defaultValue={moment(outletDetails.opens_at, format)}
               format={format}
             />
@@ -125,7 +141,7 @@ const EditDetailsModal = ({
           <Form.Item name="closes_at" label="Closes At" className="flex-1">
             <TimePicker
               className="w-full"
-              onChange={(e) => setCloseTime(moment(e.target.value,format))}
+              onChange={e => setCloseTime(moment(e, format))}
               defaultValue={moment(outletDetails.closes_at, format)}
               format={format}
             />

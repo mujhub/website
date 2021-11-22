@@ -50,7 +50,7 @@ export const MessMenuCard = () => {
   const MealText = ({ meal }) => (
     <MenuItem>
       {meal.menu.map((item, i) =>
-        i < meal.menu.length - 1 ? `${item} + , ` : item
+        i < meal.menu.length - 1 ? `${item} , ` : item
       )}
     </MenuItem>
   );
