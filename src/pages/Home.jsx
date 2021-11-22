@@ -55,7 +55,7 @@ const Home = props => {
   return (
     <>
       {/* hero section */}
-      <Flex p="0 5rem" reverseOnMobile>
+      <Flex p="0 5rem" className="gap-4 w-screen" reverseOnMobile>
         <Hero />
         <MessMenuCard />
       </Flex>
@@ -70,7 +70,7 @@ const Home = props => {
             food from outlets. The app developed by fellow students aims at
             making your life at MUJ easier.
           </Type>
-          <H6 className="services">Services Coming Soon</H6>
+          <H6 className="services mt-4 mb-4">Services Coming Soon</H6>
           <Type>
             Our array of features will be accessible via the native applications
             coming to <br />
@@ -92,7 +92,7 @@ const Home = props => {
       <Flex column center>
         <Subheading>
           <H4 className="sectionHeading">Feedback</H4>
-          <Type>
+          <Type className="mb-6">
             We promise to hear you out and help you in whatever way we can.{" "}
             <br />
             Found something cool and wish it existed on MUJ HUB? Put it in the

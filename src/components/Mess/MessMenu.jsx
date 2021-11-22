@@ -62,9 +62,7 @@ export const MessMenuCard = () => {
         <Meal>
           <H6>{meal.name}</H6>
           {meal.startsAt && meal.endsAt ? (
-            <Caption
-              style={{ lineHeight: 0 }}
-            >{`${meal.startsAt} - ${meal.endsAt}`}</Caption>
+            <Caption>{`${meal.startsAt} - ${meal.endsAt}`}</Caption>
           ) : null}
         </Meal>
 
@@ -96,7 +94,6 @@ export const MessMenuCard = () => {
 
   return (
     <div className="flex flex-col items-center w-full h-full">
-      <Banner platform="mobile" />
       <MessMenu>
         <Caption>
           MESS MENU{updatedAtDate ? ` - ${updatedAtDate}` : null}

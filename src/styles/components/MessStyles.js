@@ -11,13 +11,7 @@ export const MessMenu = styled.div`
   gap: 2rem;
   border-radius: 8px;
   padding: 1.5rem;
-  margin: 1rem;
-
-  @media (max-width: 768px) {
-    width: calc(100vw - 6rem);
-    margin: 0;
-    /* width: auto; */
-  }
+  margin-top: 1.5rem;
 `;
 
 export const SpecialPill = styled.div`
@@ -47,7 +41,8 @@ export const MealContainer = styled.div`
 `;
 
 export const MenuItem = styled.p`
-  margin-top: 0rem;
+  margin: 1rem 0;
+  font-size: 14px;
   color: ${props => props.theme.PLACEHOLDER};
   line-height: 1.8;
 `;

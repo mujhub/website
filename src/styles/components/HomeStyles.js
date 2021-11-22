@@ -81,10 +81,12 @@ export const Card = styled.div`
   max-width: 250px;
   border-radius: 8px;
   display: flex;
+  height: 240px;
   align-items: baseline;
-  justify-content: center;
+  justify-content: flex-start;
   flex-direction: column;
   transition: ease-in all;
+  gap: 1rem;
 
   .icon {
     padding: 1rem;
@@ -132,10 +134,6 @@ export const Subheading = styled.div`
 
   p {
     color: ${props => props.theme.PLACEHOLDER};
-  }
-
-  .services {
-    margin-bottom: 0;
   }
 
   @media (max-width: 768px) {
