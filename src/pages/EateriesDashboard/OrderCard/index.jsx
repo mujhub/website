@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import Axios from "axios";
+import { Spin } from "antd";
 import { Button } from "../../../styles/Shared/Button";
 import { API_URL } from "../../../constants/urls";
 import { useAuth } from "../../../contexts/Auth";
@@ -7,30 +8,22 @@ import { auth } from "../../../services/firebase";
 
 const OrderCard = ({ uniquekey, orderDetails }) => {
   const { currentUser } = useAuth();
+  const [loading, setLoading] = useState(false);
 
-  const updateOrderStatus = () => {
-    auth.currentUser.getIdToken().then(token => {
-      Axios.put(
+  const updateOrderStatus = async () => {
+    try {
+      setLoading(true);
+      const token = await auth.currentUser.getIdToken();
+      const res = await Axios.put(
         `${API_URL}/orders/${orderDetails.orderId}`,
-        {
-          status: "ACCEPTED",
-        },
-        {
-          headers: {
-            Authorization: "Bearer " + token,
-          },
-        }
-      )
-        .then(res => {
-          console.log(res.data, "result");
-        })
-        .catch(err => {
-          console.log(err);
-        })
-        .finally(() => {
-
-        });
-    });
+        { status: "ACCEPTED" },
+        { headers: { Authorization: "Bearer " + token } }
+      );
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -49,10 +42,14 @@ const OrderCard = ({ uniquekey, orderDetails }) => {
         </ul>
       </div>
 
-      <h4 className="font-semibold my-2">Deliver: {orderDetails.data.block}</h4>
+      <h4 className="font-semibold my-2">Deliver:{orderDetails.data.block}</h4>
       <h4 className="font-semibold my-2">Name: {orderDetails.data.name}</h4>
       <h4 className="font-semibold my-2">Phone: {orderDetails.data.phoneNo}</h4>
-      <Button className="submitBtn" onClick={updateOrderStatus}>
+      <Button
+        disabled={loading}
+        className="submitBtn"
+        onClick={updateOrderStatus}
+      >
         Update
       </Button>
     </div>
