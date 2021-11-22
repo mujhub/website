@@ -20,7 +20,7 @@ export const TeamCard = props => {
       <H6 className="memberName">{name}</H6>
       <Type className="memberPost">{post}</Type>
       {/* <Divider /> */}
-      <div className="memberLinks">
+      <div className="flex gap-2 text-blue-500 ml-4 mt-3">
         {links.map((link, i) => {
           let icon;
           switch (link.icon) {

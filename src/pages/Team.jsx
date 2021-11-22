@@ -16,10 +16,6 @@ const Team = () => (
   <TeamContainer>
     <TeamHeaderContainer>
       <H4>Our Team</H4>
-      <Type className="TeamHeaderDesc">
-        If you happen to like our work and see us on campus, don't forget to
-        give us a high five xD
-      </Type>
     </TeamHeaderContainer>
 
     <Container center>
