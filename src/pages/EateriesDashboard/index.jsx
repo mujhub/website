@@ -1,77 +1,81 @@
-import Ribbon from "../../components/Mess/Ribbon";
-import React, { useEffect,useState } from "react";
-import { useAuth } from "../../contexts/Auth";
-import { getEateryDetails, getEateryOwner } from "../../services/firestore";
+import React, { useEffect, useState } from "react";
 import { Button, Tooltip, Select } from "antd";
 import { FiEdit3 } from "react-icons/fi";
-import {db} from "../../services/firebase";
+
+import { useAuth } from "../../contexts/Auth";
+
+import { getEateryDetails, getEateryOwner } from "../../services/firestore";
+import { db } from "../../services/firebase";
+import { saveEateryOwnerToken } from "../../services/push_notification";
+
+import Ribbon from "../../components/Mess/Ribbon";
 
 import EditDetailsModal from "./EditDetailsModal/index";
 import OrderCard from "./OrderCard";
 
 import { Container } from "../../styles/components/EateriesStyles";
-import { saveEateryOwnerToken } from "../../services/push_notification";
 
 const EateriesDashboard = () => {
-  const {currentUser} = useAuth();
-  const [eateryOwner,setEateryOwner] = useState("");
+  const { currentUser } = useAuth();
+  const [eateryOwner, setEateryOwner] = useState("");
   const [eateryMetaData, setEateryMetaData] = useState({});
   const [orders, setOrders] = useState([]);
   const [editDetailsModal, setEditDetailsModal] = useState(false);
-  const [statusOrders,setStatusOrders] = useState([]);
+  const [statusOrders, setStatusOrders] = useState([]);
 
-  const handleChange = value => {
+  const filterType = type => {
     const tempArray = [];
-    if(value === "PENDING"){
-      let count = 0;
-      for(let i=0;i<orders.length;i+=1){
-        if(orders[i].data.status === "PLACED"){
-          tempArray.push(orders[i]);
-          count+=1;
-        }
-        if(count === 0){
-          setStatusOrders([]);
-        }
+    let count = 0;
+    for (let i = 0; i < orders.length; i += 1) {
+      if (orders[i].data.status === type) {
+        tempArray.push(orders[i]);
+        count += 1;
       }
-      setStatusOrders(tempArray);
+      if (count === 0) setStatusOrders([]);
     }
-    else if(value === "INPROGRESS"){ // Accepted
-      for(let i=0;i<orders.length;i+=1) {
-        let count = 0;
-        console.log(orders,"orders inprogress");
-        if(orders[i].data.status === "ACCEPTED"){
-          count+=1;
-          tempArray.push(orders[i]);
-        }
-        if(count === 0){
-          setStatusOrders([]);
-        }
-      }
-      setStatusOrders(tempArray);
-    }
-    else{ // Completed
-      for(let i=0;i<orders.length;i+=1){
-        let count = 0;
-        if(orders[i].data.status === "COMPLETED"){
-          tempArray.push(orders[i]);
-          count+=1;
-        }
-        if(count === 0){
-          setStatusOrders([]);
-        }
-      }
-      setStatusOrders(tempArray);
+    setStatusOrders(tempArray);
+  };
+
+  const handleChange = type => {
+    filterType(type);
+  };
+
+  const getOwner = async () => {
+    try {
+      const owner = await getEateryOwner(currentUser.uid);
+      const { slug } = await owner.data();
+      setEateryOwner(slug);
+      const eateryRes = await getEateryDetails(slug);
+      const { info } = await eateryRes.data();
+      setEateryMetaData(info);
+    } catch (error) {
+      console.log(error);
     }
   };
 
-  const getOwner = () => {
-    getEateryOwner(currentUser.uid).then((res) => {
-      setEateryOwner(res.data().slug);
-      getEateryDetails(res.data().slug).then((eateryRes) => {
-        setEateryMetaData(eateryRes.data().info);
-      });
-    });
-  }
+  const createSnapshot = async () => {
+    try {
+      const ownersRef = db.collection("owners").doc(currentUser.uid);
+      const ownersDoc = await ownersRef.get();
+      const { slug } = ownersDoc.data();
+
+      db.collection("orders")
+        .where("shop", "==", slug)
+        .onSnapshot(snap => {
+          console.log("data updated");
+          const ordersData = [];
+          snap.forEach(doc => {
+            ordersData.push({
+              data: doc.data(),
+              orderId: doc.id,
+            });
+          });
+          setOrders(ordersData);
+        });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
     // Save Eatery Owner Token to db
@@ -80,24 +84,15 @@ const EateriesDashboard = () => {
     // Get owner details
     getOwner();
 
-    // Get orders in real time
-    db.collection("owners").doc(currentUser.uid)
-    .get().then((ownerDoc) => {
-      db.collection("orders").where("shop","==",ownerDoc.data().slug)
-      .onSnapshot((querySnapshot) => {
-        const ordersData = [];
-        querySnapshot.forEach((doc) => {
-          ordersData.push({
-            data:doc.data(),
-            orderId:doc.id
-          });
-        })
-        setOrders(ordersData);
-      })
-    })
-  },[])
+    // Realtime snapshot
+    createSnapshot();
+  }, []);
 
-  return ( 
+  useEffect(() => {
+    handleChange("PLACED");
+  }, [orders]);
+
+  return (
     <>
       <Ribbon eatery={eateryOwner} />
       <Container className="mx-6 lg:mx-20 my-5 text-center flex items-center flex-col gap-4">
@@ -124,17 +119,17 @@ const EateriesDashboard = () => {
         </div>
         <hr />
         <Select
-          defaultValue="PENDING"
+          defaultValue="PLACED"
           style={{ width: 200 }}
           onChange={handleChange}
         >
-          <Select.Option value="PENDING">New Orders</Select.Option>
-          <Select.Option value="INPROGRESS">ACCEPTED</Select.Option>
+          <Select.Option value="PLACED">NEW ORDERS</Select.Option>
+          <Select.Option value="ACCEPTED">ACCEPTED</Select.Option>
           <Select.Option value="COMPLETED">COMPLETED</Select.Option>
         </Select>
         <div className="grid gap-4 grid-cols-3">
-          {statusOrders.map((order,key) => (
-            <OrderCard uniquekey = {key} orderDetails={order} />
+          {statusOrders.map((order, key) => (
+            <OrderCard uniquekey={key} orderDetails={order} />
           ))}
         </div>
         <EditDetailsModal
@@ -143,9 +138,8 @@ const EateriesDashboard = () => {
           isModalVisible={editDetailsModal}
         />
       </Container>
-    </> 
-  )
-
+    </>
+  );
 };
 
 export default EateriesDashboard;
