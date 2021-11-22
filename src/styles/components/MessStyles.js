@@ -5,7 +5,10 @@ export const MessMenu = styled.div`
   background-color: ${props => props.theme.BG2};
   box-shadow: 0px 0px 50px rgba(0, 0, 0, 0.1);
   width: 100%;
-  height: fit-content;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
   border-radius: 8px;
   padding: 1.5rem;
   margin: 1rem;
@@ -33,7 +36,6 @@ export const Meal = styled.div`
   align-items: baseline;
   p {
     margin-right: 0.5rem;
-    margin-bottom: 1rem;
   }
 `;
 

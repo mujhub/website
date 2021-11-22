@@ -44,12 +44,8 @@ export const MessMenuCard = () => {
     }
   };
 
-  const EmptyData = () => (
-    <Type style={{ marginTop: "0" }}>No data available.</Type>
-  );
-  const EmptyMenu = () => (
-    <Type style={{ marginTop: "0" }}>Not yet updated.</Type>
-  );
+  const EmptyData = () => <Type className="my-3">No data available.</Type>;
+  const EmptyMenu = () => <Type className="my-3">Not yet updated.</Type>;
   const LoadingData = () => <Type>Loading...</Type>;
   const MealText = ({ meal }) => (
     <MenuItem>
@@ -99,9 +95,7 @@ export const MessMenuCard = () => {
   }, []);
 
   return (
-    <div
-      style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
-    >
+    <div className="flex flex-col items-center w-full h-full">
       <Banner platform="mobile" />
       <MessMenu>
         <Caption>
