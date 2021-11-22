@@ -22,6 +22,7 @@ const EateriesDashboard = () => {
   const [orders, setOrders] = useState([]);
   const [editDetailsModal, setEditDetailsModal] = useState(false);
   const [statusOrders, setStatusOrders] = useState([]);
+  const [filterValue,setFilterValue] = useState("");
 
   const filterType = type => {
     const tempArray = [];
@@ -37,6 +38,7 @@ const EateriesDashboard = () => {
   };
 
   const handleChange = type => {
+    setFilterValue(type);
     filterType(type);
   };
 
@@ -89,7 +91,7 @@ const EateriesDashboard = () => {
   }, []);
 
   useEffect(() => {
-    handleChange("PLACED");
+      handleChange(filterValue);
   }, [orders]);
 
   return (
