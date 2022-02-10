@@ -9,18 +9,21 @@ import { auth } from "../../../services/firebase";
 const OrderCard = ({ uniquekey, orderDetails }) => {
   const { currentUser } = useAuth();
   const [loading, setLoading] = useState(false);
-  const [cancelButtonLoading,setCancelButtonLoading] = useState(false);
+  const [cancelButtonLoading, setCancelButtonLoading] = useState(false);
 
   const updateOrderStatus = async () => {
-    console.log(orderDetails.data.status,"status");
+    console.log(orderDetails.data.status, "status");
     try {
       setLoading(true);
       const token = await auth.currentUser.getIdToken();
       const res = await Axios.put(
         `${API_URL}/orders/${orderDetails.orderId}`,
-        { status: orderDetails.data.status === "PLACED" ? "ACCEPTED" : "COMPLETED" },
+        {
+          status:
+            orderDetails.data.status === "PLACED" ? "ACCEPTED" : "COMPLETED",
+        },
         { headers: { Authorization: "Bearer " + token } }
-        );
+      );
     } catch (error) {
       setLoading(false);
       console.log(error);
@@ -30,7 +33,7 @@ const OrderCard = ({ uniquekey, orderDetails }) => {
   };
 
   const updateCancelOrderStatus = async () => {
-    console.log(orderDetails.data.status,"status");
+    console.log(orderDetails.data.status, "status");
     try {
       setCancelButtonLoading(true);
       const token = await auth.currentUser.getIdToken();
@@ -38,7 +41,7 @@ const OrderCard = ({ uniquekey, orderDetails }) => {
         `${API_URL}/orders/${orderDetails.orderId}`,
         { status: "COMPLETED" },
         { headers: { Authorization: "Bearer " + token } }
-        );
+      );
     } catch (error) {
       setCancelButtonLoading(false);
       console.log(error);
@@ -68,34 +71,35 @@ const OrderCard = ({ uniquekey, orderDetails }) => {
       <h4 className="font-semibold my-2">Deliver:{orderDetails.data.block}</h4>
       <h4 className="font-semibold my-2">Name: {orderDetails.data.name}</h4>
       <h4 className="font-semibold my-2">Phone: {orderDetails.data.phoneNo}</h4>
-      {
-        orderDetails.data.status !== "COMPLETED" ? (
+      <div>
+        {orderDetails.data.status !== "COMPLETED" ? (
           <Button
             disabled={loading}
             className="submitBtn"
             onClick={updateOrderStatus}
           >
-            {loading ? "Updating..." : orderDetails.data.status === "PLACED"? "Accept" : "Complete"}
-          </Button>    
-        ) :(
-          <>
-          </>
-        )
-      }
+            {loading
+              ? "Updating..."
+              : orderDetails.data.status === "PLACED"
+              ? "Accept"
+              : "Complete"}
+          </Button>
+        ) : (
+          <></>
+        )}
 
-      {orderDetails.data.status === "PLACED" ? (
-        <Button
-          disabled={cancelButtonLoading}
-          className="submitBtn"
-          onClick={updateCancelOrderStatus}
-        >
-          {cancelButtonLoading ? "Updating..." : "Cancel"}
-          </Button>    
-        ) :(
-          <>
-          </>
-      )}
-      
+        {orderDetails.data.status === "PLACED" ? (
+          <Button
+            disabled={cancelButtonLoading}
+            className="submitBtn"
+            onClick={updateCancelOrderStatus}
+          >
+            {cancelButtonLoading ? "Updating..." : "Cancel"}
+          </Button>
+        ) : (
+          <></>
+        )}
+      </div>
     </div>
   );
 };
