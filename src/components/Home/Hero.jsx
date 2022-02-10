@@ -7,6 +7,7 @@ import { Banner } from "../Home/Banner";
 import PWAInstallerBtn from "../Misc/PWAInstallerBtn";
 
 import logoSq256 from "../../images/logoSq256.png";
+import { CallToActionButton } from "../../styles/Shared/Button";
 
 export const Hero = () => {
   return (
@@ -22,23 +23,23 @@ export const Hero = () => {
             applications very soon.
           </Type>
           <Caption className="comingSoon">
-            ✨ COMING SOON TO PLAY STORE AND APP STORE ✨
+            ✨ COMING SOON TO APP STORE ✨
           </Caption>
         </div>
 
         <div className="mobile">
           <div className="buttons">
-            {/* <CallToActionButton Primary>
-              <FaGooglePlay style={{ marginRight: "0.5rem" }} /> Get it on
+            <CallToActionButton Primary onClick={()=>{window.open('https://play.google.com/store/apps/details?id=com.mujhub')}}>
+              {/* <FaGooglePlay style={{ marginRight: "0.5rem" }} />  */}
+              Get it on
               Google Play
-            </CallToActionButton> */}
-            <PWAInstallerBtn />
+            </CallToActionButton>
+            {/* <PWAInstallerBtn /> */}
           </div>
           <Caption>
             If this does not work, try Options &gt; Add to Home Screen.
           </Caption>
         </div>
-        <Banner platform="desktop" style={{ marginTop: "2rem" }} />
       </HeroDiv>
     </>
   );

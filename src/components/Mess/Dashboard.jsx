@@ -13,6 +13,7 @@ const Dashboard = ({ currentMenuData }) => {
 	const [selectedMeal, setSelectedMeal] = useState(0);
 	const [selectedMenu, setSelectedMenu] = useState();
 	const [selectedSpecial, setSelectedSpecial] = useState(false);
+	const [selectedNotify, setSelectedNotify] = useState(true);
 
 	const menuToText = (arrayMenu) => {
 		let textMenu = arrayMenu.toString();
@@ -33,6 +34,7 @@ const Dashboard = ({ currentMenuData }) => {
 		let updatedMenu = currentMenuData;
 		updatedMenu.meals[selectedMeal].menu = textToMenu(selectedMenu);
 		updatedMenu.meals[selectedMeal].isSpecial = selectedSpecial;
+		updatedMenu.notify = selectedNotify;
 		return updatedMenu.meals;
 	};
 
@@ -61,6 +63,10 @@ const Dashboard = ({ currentMenuData }) => {
 
 	const handleSpecialChange = (e) => {
 		setSelectedSpecial(e.target.checked);
+	};
+
+	const handleNotifyChange = (e) => {
+		setSelectedNotify(e.target.checked);
 	};
 
 	const renderForm = () => {
@@ -97,6 +103,23 @@ const Dashboard = ({ currentMenuData }) => {
 								onChange={handleSpecialChange}
 							/>
 							<p>Special Menu?</p>
+						</div>
+						<div
+							style={{
+								marginTop: "1rem",
+								display: "flex",
+								flexDirection: "row",
+								alignItems: "center",
+							}}>
+							<input
+								className='checkbox'
+								type='checkbox'
+								height='30vh'
+								value='Special'
+								defaultChecked={selectedNotify}
+								onChange={handleNotifyChange}
+							/>
+							<p>Notify Users?</p>
 						</div>
 
 						<Button className='submitBtn' onClick={handleUpdate}>
