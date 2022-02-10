@@ -102,7 +102,6 @@ export const MessMenuCard = () => {
     <div
       style={{ display: "flex", flexDirection: "column", alignItems: "center" }}
     >
-      <Banner platform="mobile" />
       <MessMenu>
         <Caption>
           MESS MENU{updatedAtDate ? " - " + updatedAtDate : null}
