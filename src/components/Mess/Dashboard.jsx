@@ -34,14 +34,14 @@ const Dashboard = ({ currentMenuData }) => {
 		let updatedMenu = currentMenuData;
 		updatedMenu.meals[selectedMeal].menu = textToMenu(selectedMenu);
 		updatedMenu.meals[selectedMeal].isSpecial = selectedSpecial;
-		updatedMenu.notify = selectedNotify;
-		return updatedMenu.meals;
+		return {meals:updatedMenu.meals, notify:selectedNotify};
 	};
 
 	const handleUpdate = async () => {
 		setIsLoading(true);
 		try {
-			const res = await setMessMenu(createMenu());
+			const {meals, notify} = createMenu()
+			const res = await setMessMenu({meals, notify});
 			setMessage("Update Successful");
 		} catch (error) {
 			console.log(error);
