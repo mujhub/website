@@ -26,7 +26,8 @@ export const Modal = ({ children, isOpen, onClose, title, action }) => {
       isOpen={isOpen}
       onRequestClose={onClose}
       style={customStyles}
-      contentLabel=''
+			contentLabel=''
+			ariaHideApp={false}
     >
       <ModalContent>
 				<ModalHeading>
