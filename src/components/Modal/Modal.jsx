@@ -32,9 +32,9 @@ export const Modal = ({ children, isOpen, onClose, title, action }) => {
       <ModalContent>
 				<ModalHeading>
 					<h3>{title}</h3>
-					<CloseButton onClick={onClose}>
+					{/* <CloseButton onClick={onClose}>
 						<IoClose/>
-					</CloseButton>
+					</CloseButton> */}
 				</ModalHeading>
 				<div>{children}</div>
 				<ModalAction>

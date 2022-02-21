@@ -14,7 +14,7 @@ export const ModalContent = styled.div`
 	@media (max-width: 900px) {
 		width: 75vw;
 		padding:1.5rem;
-		padding-bottom: 0.5rem;
+		padding-bottom: 1rem;
 	}
 `;
 
@@ -22,6 +22,9 @@ export const ModalAction = styled.div`
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
+	@media (max-width: 900px) {
+		justify-content: center;
+	}
 `;
 
 export const CloseButton = styled.button`
@@ -40,6 +43,6 @@ export const ModalHeading = styled.div`
 	gap: 0.5rem;
 
 	h3 {
-		margin: 0
+		margin: 0.5rem 0;
 	}
 `;
