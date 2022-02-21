@@ -146,7 +146,7 @@ const Home = (props) => {
         }
       >
         🎉 Enim magna aliqua mollit eiusmod sunt velit ullamco. Exercitation Lorem cillum excepteur sunt cupidatat esse. 🎉
-        Enim magna aliqua mollit eiusmod sunt velit ullamco. Exercitation Lorem cillum excepteur sunt cupidatat esse.Enim magna aliqua mollit eiusmod sunt velit ullamco. Exercitation Lorem cillum excepteur 
+        Enim magna aliqua mollit eiusmod sunt velit ullamco. Exercitation
       </Modal>
     </>
   );

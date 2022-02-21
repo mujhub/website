@@ -10,6 +10,12 @@ export const ModalContent = styled.div`
 	grid-template-row: 1fr 2fr 1fr;
 	gap: 1rem;
 	max-width: 600px;
+
+	@media (max-width: 900px) {
+		width: 75vw;
+		padding:1.5rem;
+		padding-bottom: 0.5rem;
+	}
 `;
 
 export const ModalAction = styled.div`
